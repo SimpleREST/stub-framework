@@ -1,0 +1,24 @@
+{
+  "name": "simplerest/stub-framework",
+  "description": "The SimpleStub Framework",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://simplerest.ru",
+  "support": {
+    "issues": "https://github.com/simplerest/stub-framework/issues",
+    "source": "https://github.com/simplerest/stub-framework"
+  },
+  "authors": [
+    {
+      "name": "Dmitry Veremeenko",
+      "email": "stdimensiy@yandex.ru"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Stub\\Framework\\": "src/"
+    }
+  }
+}
