@@ -12,6 +12,28 @@ interface Application
     public function version();
 
     /**
+     * Возвращает базовый путь к установке заглушки
+     *
+     * @param string $path
+     * @return string
+     */
+    public function basePath($path = '');
+
+    /**
+     * Возвращает установленную локаль.
+     *
+     * @return string
+     */
+    public function getLocale();
+
+    /**
+     * Возвращает текущее пространство имен.
+     *
+     * @return string
+     */
+    public function getNamespace();
+
+    /**
      * Завершает работу приложения
      *
      * @return void
