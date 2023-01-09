@@ -10,17 +10,13 @@ class ListCommand extends Command implements Commands
 
     public function __construct()
     {
-        $this->name = "Command1";
-        $this->description = "Description 1";
-    }
-
-    public function getConsoleDescriptionString(): string
-    {
-        return "";
+        $this->name = "list";
+        $this->description = "Выводит список всех доступных команд консольного приложения";
     }
 
     public function run(): string
     {
-        return "Выполнено";
+        echo "отработал метод" . $this::getName();
+        return " Ok!";
     }
 }

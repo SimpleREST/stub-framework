@@ -9,12 +9,6 @@ namespace Stub\Framework\Contracts\Console;
  */
 interface Commands
 {
-    /**
-     * Возвращает форматированную для консоли строку описания команды
-     *
-     * @return string
-     */
-    public function getConsoleDescriptionString(): string;
 
     /**
      * Базовое действие команды

@@ -38,5 +38,11 @@ abstract class Command
         return $this->name;
     }
 
+    public function __construct()
+    {
+        $this->name = "No Name!!!";
+        $this->description = "NO Description !!!";
+    }
+
 
 }
