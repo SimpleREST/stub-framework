@@ -7,7 +7,6 @@ use Stub\Framework\Contracts\Console\Commands;
 
 class ListCommand extends Command implements Commands
 {
-
     public function __construct()
     {
         $this->name = "list";

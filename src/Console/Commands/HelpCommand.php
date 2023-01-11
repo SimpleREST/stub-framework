@@ -12,6 +12,7 @@ class HelpCommand extends Command implements Commands
         $this->name = "help";
         $this->description = "Выводит расширенную справку по выбранной команде";
     }
+
     public function run(): string
     {
         echo "отработал метод" . $this::getName();

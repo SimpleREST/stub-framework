@@ -12,6 +12,7 @@ class MakeNewCustomStubCommand extends Command implements Commands
         $this->name = "make:new-custom-stub";
         $this->description = "Создает пользовательскую заглушку из штатного шаблона";
     }
+
     public function run(): string
     {
         echo "отработал метод" . $this::getName();
