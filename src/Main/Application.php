@@ -11,7 +11,7 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.0.2';
+    const VERSION = '0.0.4';
 
     /**
      * The application namespace.
