@@ -44,4 +44,14 @@ class Application implements BaseApplicationContract
     {
         return __NAMESPACE__;
     }
+
+    /**
+     * Временно тестовый метод
+     *
+     * @var string
+     */
+    public function execute($commandString)
+    {
+        echo $commandString;
+    }
 }
