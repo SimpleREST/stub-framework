@@ -11,7 +11,7 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.0.4';
+    const VERSION = '0.0.5';
 
     /**
      * The application namespace.
@@ -20,17 +20,17 @@ class Application implements BaseApplicationContract
      */
     protected $namespace;
 
-    public function version()
+    public function version(): string
     {
         return static::VERSION;
     }
 
-    public function terminate()
+    public function terminate(): string
     {
         return "Работа приложения завершается!";
     }
 
-    public function basePath($path = '')
+    public function basePath($path = ''): string
     {
         return "Это метод пригодится позже, сейчас зарезервирован";
     }
@@ -40,7 +40,7 @@ class Application implements BaseApplicationContract
         return setlocale(LC_ALL, 0);
     }
 
-    public function getNamespace()
+    public function getNamespace(): string
     {
         return __NAMESPACE__;
     }
@@ -48,10 +48,21 @@ class Application implements BaseApplicationContract
     /**
      * Временно тестовый метод
      *
-     * @var string
+     * @return void
+     * @var string $commandString
      */
-    public function execute($commandString)
+    public function execute(string $commandString)
     {
         echo $commandString;
+    }
+
+    /**
+     *Выполнение конкреттной команды
+     * @return int
+     */
+    public function run(): int
+    {
+        echo "Нужно получить собственно наименование команды и перечень параметров команды из argv ";
+        return 1;
     }
 }
