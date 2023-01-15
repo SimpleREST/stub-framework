@@ -5,6 +5,7 @@ namespace Stub\Framework\Console\Base;
 class Input implements \Stub\Framework\Contracts\Console\Input
 {
     private $baseResult;
+
     public function __construct()
     {
         $this->baseResult = $_SERVER['argv'];
