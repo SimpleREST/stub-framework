@@ -15,5 +15,23 @@ namespace Stub\Framework\Console\Base;
  */
 class StringDecorator
 {
+    public function red($string): string
+    {
+        return ConsoleTextForegroundColorsEnum::RED . $string . ConsoleTextForegroundColorsEnum::BLACK;
+    }
 
+    public function green($string): string
+    {
+        return ConsoleTextForegroundColorsEnum::GREEN . $string . ConsoleTextForegroundColorsEnum::BLACK;
+    }
+
+    public function yellow($string): string
+    {
+        return ConsoleTextForegroundColorsEnum::YELLOW . $string . ConsoleTextForegroundColorsEnum::BLACK;
+    }
+
+    public function blue($string): string
+    {
+        return ConsoleTextForegroundColorsEnum::BLUE . $string . ConsoleTextForegroundColorsEnum::BLACK;
+    }
 }

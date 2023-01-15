@@ -23,9 +23,11 @@ class Terminal
     }
 
     /**
+     * Возвращает текущее значение ширины экрана терминала в символах, или при невозможности определения,
+     * вернет базовое предустановленное значение равное 80 символам.
      * @return null
      */
-    public static function getWidth()
+    public static function getWidth(): ?int
     {
         $width = getenv('COLUMNS');
         if (false !== $width) {
@@ -40,11 +42,13 @@ class Terminal
     }
 
     /**
+     * Возвращает текущее значение высоты экрана терминала в строках, или при невозможности определения,
+     * вернет базовое предустановленное значение равное 6 строкам.
      * @return null
      */
-    public static function getHeight()
+    public static function getHeight(): ?int
     {
-        return self::$height;
+        return self::$height ?: 6;
     }
 
 
