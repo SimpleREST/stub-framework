@@ -2,6 +2,8 @@
 
 namespace Stub\Framework\Main;
 
+use Stub\Framework\Console\Base\Input;
+use Stub\Framework\Console\Base\Output;
 use Stub\Framework\Contracts\Main\Application as BaseApplicationContract;
 
 class Application implements BaseApplicationContract
@@ -20,9 +22,45 @@ class Application implements BaseApplicationContract
      */
     protected $namespace;
 
+    /**
+     * Поток ввода.
+     *
+     * @var Input
+     */
+    private static $input;
+
+    /**
+     * Поток вывода.
+     *
+     * @var Output
+     */
+    private static $output;
+
+    public function __construct()
+    {
+        self::$input = Input::getInstance();
+        self::$output = Output::getInstance();
+    }
+
     public function version(): string
     {
         return static::VERSION;
+    }
+
+    /**
+     * @return Input|null
+     */
+    public static function getInput(): Input
+    {
+        return self::$input;
+    }
+
+    /**
+     * @return Output
+     */
+    public static function getOutput(): Output
+    {
+        return self::$output;
     }
 
     public function terminate(): string

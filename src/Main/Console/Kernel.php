@@ -3,6 +3,8 @@
 namespace Stub\Framework\Main\Console;
 
 use DateTime;
+use Stub\Framework\Contracts\Console\Input;
+use Stub\Framework\Contracts\Console\Output;
 use Stub\Framework\Contracts\Main\Application;
 use Throwable;
 
@@ -31,15 +33,10 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
     public function __construct(Application $app)
     {
         $this->app = $app;
-        self::hi();
+        self::hendle($app::getInput(), $app::getOutput());
     }
 
-    public function hi()
-    {
-        echo "Привет!!! Результат есть!";
-    }
-
-    public function hendle()
+    public function hendle(Input $input, Output $output)
     {
         $this->commandStartedDateTime = new DateTime();
         try {
