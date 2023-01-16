@@ -17,7 +17,7 @@ class StringDecorator
 {
     public function red($string): string
     {
-        return ConsoleTextForegroundColorsEnum::RED . $string . ConsoleTextForegroundColorsEnum::BLACK;
+        return ConsoleTextForegroundColorsEnum::RED . $string . ConsoleTextForegroundColorsEnum::YELLOW;
     }
 
     public function green($string): string
@@ -33,5 +33,15 @@ class StringDecorator
     public function blue($string): string
     {
         return ConsoleTextForegroundColorsEnum::BLUE . $string . ConsoleTextForegroundColorsEnum::BLACK;
+    }
+
+    public function purple($string): string
+    {
+        return ConsoleTextForegroundColorsEnum::PURPLE . $string . ConsoleTextForegroundColorsEnum::BLACK;
+    }
+
+    public function brown($string): string
+    {
+        return ConsoleTextForegroundColorsEnum::BROWN . $string . ConsoleTextForegroundColorsEnum::BLACK;
     }
 }
