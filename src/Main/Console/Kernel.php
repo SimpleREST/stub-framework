@@ -48,4 +48,10 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
              данные разные окружения и уже потом выдать на гора...";
         }
     }
+
+    public function sayHello(): string
+    {
+        echo "Hello!! It is Console Kernel...";
+        return "Hi!! It is Console Kernel...";
+    }
 }

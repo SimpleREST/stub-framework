@@ -68,7 +68,7 @@ class Application implements BaseApplicationContract
         return "Работа приложения завершается!";
     }
 
-    public function basePath($path = ''): string
+    public function basePath(string $path = ''): string
     {
         return "Это метод пригодится позже, сейчас зарезервирован";
     }
@@ -95,12 +95,17 @@ class Application implements BaseApplicationContract
     }
 
     /**
-     *Выполнение конкреттной команды
+     *Выполнение конкретной команды
      * @return int
      */
     public function run(): int
     {
         echo "Нужно получить собственно наименование команды и перечень параметров команды из argv ";
         return 1;
+    }
+
+    public function get(string $string, string $string1)
+    {
+        return "";
     }
 }

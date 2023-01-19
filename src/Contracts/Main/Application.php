@@ -9,7 +9,7 @@ interface Application
      *
      * @return string
      */
-    public function version();
+    public function version(): string;
 
     /**
      * Возвращает базовый путь к установке заглушки
@@ -17,7 +17,7 @@ interface Application
      * @param string $path
      * @return string
      */
-    public function basePath($path = '');
+    public function basePath(string $path = ''): string;
 
     /**
      * Возвращает установленную локаль.
@@ -31,7 +31,7 @@ interface Application
      *
      * @return string
      */
-    public function getNamespace();
+    public function getNamespace(): string;
 
     /**
      * Завершает работу приложения
@@ -39,5 +39,7 @@ interface Application
      * @return void
      */
     public function terminate();
+
+    public function get(string $string, string $string1);
 
 }
