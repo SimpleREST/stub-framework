@@ -9,5 +9,5 @@ interface Kernel
      *
      * @return string
      */
-    public function hi();
+    public function sayHello(): string;
 }
