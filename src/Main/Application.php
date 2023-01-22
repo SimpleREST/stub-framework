@@ -13,7 +13,14 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.0.5';
+    const VERSION = '0.0.6';
+
+    /**
+     * The base path for the SimpleStub installation.
+     *
+     * @var string
+     */
+    protected $basePath;
 
     /**
      * The application namespace.
@@ -36,14 +43,18 @@ class Application implements BaseApplicationContract
      */
     private static $output;
 
-    public function __construct()
+    public function __construct($basePath)
     {
-        self::$input = Input::getInstance();
-        self::$output = Output::getInstance();
+//        self::$input = Input::getInstance();
+//        self::$output = Output::getInstance();
+        if ($basePath) {
+            $this->basePath = rtrim($basePath, '\/');
+        }
     }
 
     public function version(): string
     {
+        if (defined('STUB_APP_VERSION')) echo STUB_APP_VERSION;
         return static::VERSION;
     }
 

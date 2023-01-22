@@ -9,7 +9,7 @@ use Stub\Framework\Contracts\Main\Application;
 use Throwable;
 
 /**
- *
+ * Класс ядра консоли
  */
 class Kernel implements \Stub\Framework\Contracts\Console\Kernel
 {
