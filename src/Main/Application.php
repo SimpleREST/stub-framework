@@ -6,6 +6,10 @@ use Stub\Framework\Console\Base\Input;
 use Stub\Framework\Console\Base\Output;
 use Stub\Framework\Contracts\Main\Application as BaseApplicationContract;
 
+/**
+ * Основной класс приложения (единый для консоли, http  rest APi
+ *
+ */
 class Application implements BaseApplicationContract
 {
     /**
@@ -13,7 +17,13 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.0.6';
+    const VERSION = '0.0.7';
+
+    /**
+     * Массив конфигурационных параметров заглушки
+     * @var array $params [mixed]
+     */
+    private $params;
 
     /**
      * The base path for the SimpleStub installation.
@@ -43,19 +53,32 @@ class Application implements BaseApplicationContract
      */
     private static $output;
 
+    /**
+     * Конструктор экземпляра класса приложения
+     * @param $basePath
+     */
     public function __construct($basePath)
     {
 //        self::$input = Input::getInstance();
 //        self::$output = Output::getInstance();
+        $this->params = include_once('./../config/config.php');
         if ($basePath) {
             $this->basePath = rtrim($basePath, '\/');
         }
     }
 
+    /**
+     * Возвращает форматированную строку версии приложения / фреймворка
+     * @return string
+     */
     public function version(): string
     {
-        if (defined('STUB_APP_VERSION')) echo STUB_APP_VERSION;
-        return static::VERSION;
+        $formattedVersionString = "";
+        if (defined('STUB_APP_VERSION')) {
+            $formattedVersionString = STUB_APP_VERSION;
+        };
+        $formattedVersionString .= "/" . static::VERSION;
+        return $formattedVersionString;
     }
 
     /**
@@ -115,8 +138,15 @@ class Application implements BaseApplicationContract
         return 1;
     }
 
-    public function get(string $string, string $string1)
+    /**
+     * Gets the value of the configuration parameter.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    function get(string $key, $default = null)
     {
-        return "";
+        return $this->params[$key] ?: $default;
     }
 }

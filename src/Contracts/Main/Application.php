@@ -2,6 +2,9 @@
 
 namespace Stub\Framework\Contracts\Main;
 
+/**
+ * Интерфейс приложения
+ */
 interface Application
 {
     /**
@@ -40,6 +43,12 @@ interface Application
      */
     public function terminate();
 
-    public function get(string $string, string $string1);
+    /**
+     * Возвращает значение конфигурационного параметра заглушки по ключу
+     * @param string $key
+     * @param $default
+     * @return mixed
+     */
+    public function get(string $key, $default = null);
 
 }
