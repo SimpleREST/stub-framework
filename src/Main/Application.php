@@ -16,6 +16,12 @@ class Application implements BaseApplicationContract
     const VERSION = '0.0.6';
 
     /**
+     * Массив конфигурационных параметров заглушки
+     * @var array $params [mixed]
+     */
+    private $params;
+
+    /**
      * The base path for the SimpleStub installation.
      *
      * @var string
@@ -47,6 +53,7 @@ class Application implements BaseApplicationContract
     {
 //        self::$input = Input::getInstance();
 //        self::$output = Output::getInstance();
+        $this->params = include_once('./../config/config.php');
         if ($basePath) {
             $this->basePath = rtrim($basePath, '\/');
         }
@@ -54,8 +61,12 @@ class Application implements BaseApplicationContract
 
     public function version(): string
     {
-        if (defined('STUB_APP_VERSION')) echo STUB_APP_VERSION;
-        return static::VERSION;
+        $formattedVersionString = "";
+        if (defined('STUB_APP_VERSION')) {
+            $formattedVersionString = STUB_APP_VERSION;
+        };
+        $formattedVersionString .= "/" . static::VERSION;
+        return $formattedVersionString;
     }
 
     /**
@@ -115,8 +126,15 @@ class Application implements BaseApplicationContract
         return 1;
     }
 
-    public function get(string $string, string $string1)
+    /**
+     * Gets the value of the configuration parameter.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    function get(string $key, $default = null)
     {
-        return "";
+        return $this->params[$key] ?: $default;
     }
 }

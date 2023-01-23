@@ -46,12 +46,28 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
      */
     public function sayHello(): string
     {
-//        echo "Hello!! It is Console Kernel...";
-//        return "Hi!! It is Console Kernel...";
+        echo "Hello!! It is Console Kernel...";
+        return "Hi!! It is Console Kernel...";
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrentStub(): string
+    {
         $stub = new Stub($this->app);
         $stub->generate($this->app);
-        echo $stub->getDocumentResult();
+        return $stub->getDocumentResult();
+    }
 
-        return "";
+    /**
+     * Завершение работы приложения вывод результата пользователю
+     * @param $request
+     * @param $response
+     * @return void
+     */
+    public function terminate($request, $response)
+    {
+        exit($response);
     }
 }
