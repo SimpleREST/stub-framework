@@ -6,6 +6,10 @@ use Stub\Framework\Console\Base\Input;
 use Stub\Framework\Console\Base\Output;
 use Stub\Framework\Contracts\Main\Application as BaseApplicationContract;
 
+/**
+ * Основной класс приложения (единый для консоли, http  rest APi
+ *
+ */
 class Application implements BaseApplicationContract
 {
     /**
@@ -13,7 +17,7 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.0.6';
+    const VERSION = '0.0.7';
 
     /**
      * Массив конфигурационных параметров заглушки
@@ -49,6 +53,10 @@ class Application implements BaseApplicationContract
      */
     private static $output;
 
+    /**
+     * Конструктор экземпляра класса приложения
+     * @param $basePath
+     */
     public function __construct($basePath)
     {
 //        self::$input = Input::getInstance();
@@ -59,6 +67,10 @@ class Application implements BaseApplicationContract
         }
     }
 
+    /**
+     * Возвращает форматированную строку версии приложения / фреймворка
+     * @return string
+     */
     public function version(): string
     {
         $formattedVersionString = "";
