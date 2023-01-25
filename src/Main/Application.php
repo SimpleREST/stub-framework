@@ -2,8 +2,6 @@
 
 namespace Stub\Framework\Main;
 
-use Stub\Framework\Console\Base\Input;
-use Stub\Framework\Console\Base\Output;
 use Stub\Framework\Contracts\Main\Application as BaseApplicationContract;
 
 /**
@@ -17,7 +15,7 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.0.7';
+    const VERSION = '0.0.8';
 
     /**
      * Массив конфигурационных параметров заглушки
@@ -39,19 +37,6 @@ class Application implements BaseApplicationContract
      */
     protected $namespace;
 
-    /**
-     * Поток ввода.
-     *
-     * @var Input
-     */
-    private static $input;
-
-    /**
-     * Поток вывода.
-     *
-     * @var Output
-     */
-    private static $output;
 
     /**
      * Конструктор экземпляра класса приложения
@@ -59,12 +44,10 @@ class Application implements BaseApplicationContract
      */
     public function __construct($basePath)
     {
-//        self::$input = Input::getInstance();
-//        self::$output = Output::getInstance();
-        $this->params = include_once('./../config/config.php');
         if ($basePath) {
             $this->basePath = rtrim($basePath, '\/');
         }
+        $this->params = include_once($this->basePath.'\config\config.php');
     }
 
     /**
@@ -79,22 +62,6 @@ class Application implements BaseApplicationContract
         };
         $formattedVersionString .= "/" . static::VERSION;
         return $formattedVersionString;
-    }
-
-    /**
-     * @return Input|null
-     */
-    public static function getInput(): Input
-    {
-        return self::$input;
-    }
-
-    /**
-     * @return Output
-     */
-    public static function getOutput(): Output
-    {
-        return self::$output;
     }
 
     public function terminate(): string

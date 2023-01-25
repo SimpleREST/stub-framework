@@ -29,7 +29,12 @@ class Output implements \Stub\Framework\Contracts\Console\Output
 
     public function writeln($message)
     {
-        echo $message;
-        echo "\r\n";
+        if (is_array($message)){
+            var_dump($message);
+        } else {
+            echo $message;
+            echo "\r\n";
+        }
+
     }
 }
