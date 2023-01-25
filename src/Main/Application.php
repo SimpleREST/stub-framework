@@ -47,7 +47,7 @@ class Application implements BaseApplicationContract
         if ($basePath) {
             $this->basePath = rtrim($basePath, '\/');
         }
-        $this->params = include_once($this->basePath . '\config\config.php');
+        $this->params = include_once($this->basePath.'\config\config.php');
     }
 
     /**
@@ -59,7 +59,7 @@ class Application implements BaseApplicationContract
         $formattedVersionString = "";
         if (defined('STUB_APP_VERSION')) {
             $formattedVersionString = STUB_APP_VERSION;
-        }
+        };
         $formattedVersionString .= "/" . static::VERSION;
         return $formattedVersionString;
     }
