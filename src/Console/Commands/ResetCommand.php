@@ -1,6 +1,6 @@
 <?php
 
-namespace Stub\Framework\Console\Commands\Config;
+namespace Stub\Framework\Console\Commands;
 
 use Stub\Framework\Console\Base\Command;
 use Stub\Framework\Contracts\Console\Commands;
