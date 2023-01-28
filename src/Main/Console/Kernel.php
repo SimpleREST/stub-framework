@@ -67,8 +67,10 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
 
     protected function execute(Command $command)
     {
-        $this->output->writeln("Выполняю конкретную команду");
+        $this->output->writeln("Инициирую обращение к геттеру имени команды \r\n");
         $this->output->writeln($command->getName());
+        $this->output->writeln("Инициирую обращение к основному методу команды \r\n");
+        $this->output->writeln($command->run());
         $this->output->writeln("Завершаю выполнение команды");
     }
 

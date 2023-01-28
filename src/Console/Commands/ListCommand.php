@@ -15,7 +15,20 @@ class ListCommand extends Command implements Commands
 
     public function run(): string
     {
-        echo "отработал метод" . $this::getName();
+        var_dump($this->getAllClasses());
         return " Ok!";
+    }
+
+    private function getAllClasses(): array
+    {
+        global $composer;
+        $classes = array_keys($composer->getClassMap());
+        $allClasses = [];
+        if (false === empty($classes)) {
+            foreach ($classes as $class) {
+                $allClasses[] = '\\' . $class;
+            }
+        }
+        return $allClasses;
     }
 }
