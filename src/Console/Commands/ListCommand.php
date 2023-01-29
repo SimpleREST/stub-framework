@@ -19,16 +19,21 @@ class ListCommand extends Command implements Commands
 
     public function run(): string
     {
-        $resultString = "SimpleStub Framework " . SD::green(Application::VERSION) . "\r\n";
-        $resultString .= "SimpleStub Framework " . SD::red(Application::VERSION) . "\r\n";
-        $resultString .= "SimpleStub Framework " . SD::yellow(Application::VERSION) . "\r\n";
-        $resultString .= "SimpleStub Framework " . SD::blue(Application::VERSION) . "\r\n";
-        $resultString .= "SimpleStub Framework " . SD::brown(Application::VERSION) . "\r\n";
-        $resultString .= "SimpleStub Framework " . SD::purple(Application::VERSION) . "\r\n";
-        $resultString .= "SimpleStub Framework " . SD::color(Application::VERSION) . "\r\n";
-        $resultString .= "SimpleStub Framework " . SD::color(Application::VERSION, ConsoleTextForegroundColorsEnum::CYAN, ConsoleTextBackgroundColorsEnum::MAGENTA) . "\r\n";
+        $resultString = "SimpleStub Framework " . SD::green(Application::VERSION) . "\r\n\n";
+        $resultString .= SD::brown("Usage:\r\n");
+        $resultString .= "command [options] [arguments]\r\n\n";
+        $resultString .= SD::brown("Options:\r\n");
+        $resultString .= "  " . str_pad(SD::green("-h, --help"), 32);
+        $resultString .= "Показать справку для выбранной команды, если команда не задана, будет выполнена команда" . SD::green("list") . "\r\n";
+        $resultString .= "  " . str_pad(SD::green("-q, --quiet"), 32);
+        $resultString .= "Блокировать (не выводить / игнорировать) все сообщения (генерируемые при выполнении команды)\r\n";
+        $resultString .= "  " . str_pad(SD::green("-V, --version"), 32);
+        $resultString .= "Вывести версию приложения (команда в данном случае не важна)\r\n";
+        $resultString .= "  " . str_pad(SD::green("-n, --no-interaction"), 32);
+        $resultString .= "Не задавать никаких вопросов (блокировать интерактивный режим)\r\n\n";
+
         //полный список классов
-        $classes = $this->getAllClasses();
+        //$classes = $this->getAllClasses();
         // сортируем список на предмет наличия только искомого пространства имен
         $fclasses = $this->getClassesByNamespace("Stub\Framework\Console\Commands");
         $resultString .= SD::brown("Available commands:") . "\r\n";
@@ -41,7 +46,10 @@ class ListCommand extends Command implements Commands
         }
         // формируем результирующую строку
 
-        //var_dump($fclasses);
+        var_dump($fclasses);
+        $sortclasses = $this->sortCommandsByGroup($fclasses, "Stub\Framework\Console\Commands");
+        echo "ОТСОРТИРОВАННЫЕ КЛАССЫ";
+        var_dump($sortclasses);
         return $resultString;
     }
 
@@ -55,6 +63,7 @@ class ListCommand extends Command implements Commands
                 $allClasses[] = '\\' . $class;
             }
         }
+        var_dump($allClasses);
         return $allClasses;
     }
 
@@ -76,5 +85,29 @@ class ListCommand extends Command implements Commands
             }
             return false;
         });
+    }
+
+    private function sortCommandsByGroup(array $prepareArrayCommandClasses, $namespace): array
+    {
+        if (0 !== strpos($namespace, '\\')) {
+            $namespace = '\\' . $namespace;
+        }
+        $resultClasses = array();
+        foreach ($prepareArrayCommandClasses as $class) {
+            $group = str_replace($namespace, "", $class);
+            //echo "Обрезаемая строка сзади";
+            //echo strrpos($group,'\\',1);
+            //$group = substr($group, strrpos($group,'\\',1));
+            $group = str_replace(substr($group, strrpos($group,'\\',1)), "", $group);
+            //$group = str_replace(strrpos($group,'\\',1), "", $group);
+            if (isset($resultClasses[$group])){
+                $currentArr = $resultClasses[$group];
+                $currentArr[] = $class;
+                $resultClasses[$group] = $currentArr;
+            } else {
+                $resultClasses[$group] = array($class);
+            }
+        }
+        return $resultClasses;
     }
 }
