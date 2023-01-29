@@ -15,33 +15,47 @@ namespace Stub\Framework\Console\Base;
  */
 class StringDecorator
 {
-    public function red($string): string
+    public static function red($string): string
     {
-        return ConsoleTextForegroundColorsEnum::RED . $string . ConsoleTextForegroundColorsEnum::YELLOW;
+        return "\033[" . ConsoleTextForegroundColorsEnum::RED . "m" . $string . "\033[0m";
     }
 
-    public function green($string): string
+    public static function green($string): string
     {
-        return ConsoleTextForegroundColorsEnum::GREEN . $string . ConsoleTextForegroundColorsEnum::BLACK;
+        return "\033[" . ConsoleTextForegroundColorsEnum::GREEN . "m" . $string . "\033[0m";
     }
 
-    public function yellow($string): string
+    public static function yellow($string): string
     {
-        return ConsoleTextForegroundColorsEnum::YELLOW . $string . ConsoleTextForegroundColorsEnum::BLACK;
+        return "\033[" . ConsoleTextForegroundColorsEnum::YELLOW . "m" . $string . "\033[0m";
     }
 
-    public function blue($string): string
+    public static function blue($string): string
     {
-        return ConsoleTextForegroundColorsEnum::BLUE . $string . ConsoleTextForegroundColorsEnum::BLACK;
+        return "\033[" . ConsoleTextForegroundColorsEnum::BLUE . "m" . $string . "\033[0m";
     }
 
-    public function purple($string): string
+    public static function purple($string): string
     {
-        return ConsoleTextForegroundColorsEnum::PURPLE . $string . ConsoleTextForegroundColorsEnum::BLACK;
+        return "\033[" . ConsoleTextForegroundColorsEnum::PURPLE . "m" . $string . "\033[0m";
     }
 
-    public function brown($string): string
+    public static function brown($string): string
     {
-        return ConsoleTextForegroundColorsEnum::BROWN . $string . ConsoleTextForegroundColorsEnum::BLACK;
+        return "\033[" . ConsoleTextForegroundColorsEnum::BROWN . "m" . $string . "\033[0m";
+    }
+
+    public static function color($colorableString, string $foregroundColorsEnum = null, string $backgroundColorsEnum = null): string
+    {
+        $coloredString = "";
+        if (isset($foregroundColorsEnum)) {
+            $coloredString .= "\033[" . $foregroundColorsEnum . "m";
+        }
+        if (isset($backgroundColorsEnum)) {
+            $coloredString .= "\033[" . $backgroundColorsEnum . "m";
+        }
+        $coloredString .= $colorableString . "\033[0m";
+
+        return $coloredString;
     }
 }

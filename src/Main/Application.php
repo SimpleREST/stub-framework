@@ -15,7 +15,7 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.0.9';
+    const VERSION = '0.0.10';
 
     /**
      * Массив конфигурационных параметров заглушки
