@@ -3,8 +3,8 @@
 namespace Stub\Framework\Console\Commands;
 
 use Stub\Framework\Console\Base\Command;
-use Stub\Framework\Console\Base\ConsoleTextBackgroundColorsEnum as BackgroundColor;
-use Stub\Framework\Console\Base\ConsoleTextForegroundColorsEnum as TextColor;
+use Stub\Framework\Console\Base\ConsoleTextBackgroundColorsEnum;
+use Stub\Framework\Console\Base\ConsoleTextForegroundColorsEnum;
 use Stub\Framework\Console\Base\StringDecorator as SD;
 use Stub\Framework\Contracts\Console\Commands;
 use Stub\Framework\Main\Application;
@@ -26,14 +26,21 @@ class ListCommand extends Command implements Commands
         $resultString .= "SimpleStub Framework " . SD::brown(Application::VERSION) . "\r\n";
         $resultString .= "SimpleStub Framework " . SD::purple(Application::VERSION) . "\r\n";
         $resultString .= "SimpleStub Framework " . SD::color(Application::VERSION) . "\r\n";
-        $resultString .= "SimpleStub Framework " . SD::color(Application::VERSION,
-                TextColor::CYAN,
-                BackgroundColor::MAGENTA) . "\r\n";
+        $resultString .= "SimpleStub Framework " . SD::color(Application::VERSION, ConsoleTextForegroundColorsEnum::CYAN, ConsoleTextBackgroundColorsEnum::MAGENTA) . "\r\n";
         //полный список классов
         $classes = $this->getAllClasses();
         // сортируем список на предмет наличия только искомого пространства имен
         $fclasses = $this->getClassesByNamespace("Stub\Framework\Console\Commands");
+        $resultString .= SD::brown("Available commands:") . "\r\n";
+        foreach ($fclasses as $fclass) {
+            //$resultString .= "Найден класс команды в пространстве имен" . SD::brown($fclass) . "\r\n";
+            /** @var Commands $currentClass */
+            $currentClass = new $fclass();
+            $resultString .= "  " . str_pad(SD::green($currentClass->name), 32);
+            $resultString .= $currentClass->description . "\r\n";
+        }
         // формируем результирующую строку
+
         //var_dump($fclasses);
         return $resultString;
     }
