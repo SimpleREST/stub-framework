@@ -60,18 +60,13 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
             $this->output->writeln($className);
             $this->execute(new $className());
         } catch (Throwable $e) {
-            $this->output->writeln("Это на случай если ошибка возникнет, ее нужно передать на обработку (оформление) добавить к ней
-             данные разные окружения и уже потом выдать на гора...");
+            $this->output->writeln("Ошибка при выполнении команды...". $e);
         }
     }
 
     protected function execute(Command $command)
     {
-        $this->output->writeln("Инициирую обращение к геттеру имени команды \r\n");
-        $this->output->writeln($command->getName());
-        $this->output->writeln("Инициирую обращение к основному методу команды \r\n");
         $this->output->writeln($command->run());
-        $this->output->writeln("Завершаю выполнение команды");
     }
 
     public function sayHello(): string

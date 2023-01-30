@@ -3,8 +3,6 @@
 namespace Stub\Framework\Console\Commands;
 
 use Stub\Framework\Console\Base\Command;
-use Stub\Framework\Console\Base\ConsoleTextBackgroundColorsEnum;
-use Stub\Framework\Console\Base\ConsoleTextForegroundColorsEnum;
 use Stub\Framework\Console\Base\StringDecorator as SD;
 use Stub\Framework\Contracts\Console\Commands;
 use Stub\Framework\Main\Application;
@@ -17,6 +15,16 @@ class ListCommand extends Command implements Commands
         $this->description = "Выводит список всех доступных команд консольного приложения";
     }
 
+    /**
+     * Основной метод команды
+     *--------------------------------------------------------------------------------
+     * Формирует список всех доступных в текущей версии SimpleStub Framework команд
+     * с общей информацией о действиях команд ыи параметрах.
+     *
+     * Детальная информация по каждой коменде может быть получена при использовании команды help с передачей
+     * в качестве параметра ей наименования команды, справку по которой нужно получить.
+     * @return string -  возвращает отформатированную для консоли строку результата.
+     */
     public function run(): string
     {
         $resultString = "SimpleStub Framework " . SD::green(Application::VERSION) . "\r\n\n";
@@ -32,36 +40,35 @@ class ListCommand extends Command implements Commands
         $resultString .= "  " . str_pad(SD::green("-n, --no-interaction"), 32);
         $resultString .= "Не задавать никаких вопросов (блокировать интерактивный режим)\r\n\n";
 
-        //полный список классов
-        //$classes = $this->getAllClasses();
-        // сортируем список на предмет наличия только искомого пространства имен
-        $fclasses = $this->getClassesByNamespace("Stub\Framework\Console\Commands\\");
-        $resultString .= SD::brown("Available commands:") . "\r\n";
-        foreach ($fclasses as $fclass) {
-            //$resultString .= "Найден класс команды в пространстве имен" . SD::brown($fclass) . "\r\n";
-            /** @var Commands $currentClass */
-            $currentClass = new $fclass();
-            $resultString .= "  " . str_pad(SD::green($currentClass->name), 32);
-            $resultString .= $currentClass->description . "\r\n";
-        }
-        // формируем результирующую строку
-
-        var_dump($fclasses);
-        $sortclasses = $this->sortCommandsByGroup($fclasses, "Stub\Framework\Console\Commands\\");
-        echo "ОТСОРТИРОВАННЫЕ КЛАССЫ";
-        var_dump($sortclasses);
-        foreach ($sortclasses as $key => $value) {
-            $resultString .= SD::brown($key) . "\r\n";
-            foreach ($value as $fclass) {
-                /** @var Commands $currentClass */
-                $currentClass = new $fclass();
-                $resultString .= "  " . str_pad(SD::green($currentClass->name), 32);
-                $resultString .= $currentClass->description . "\r\n";
+        $prepareListCommand = $this->getClassesByNamespace("Stub\Framework\Console\Commands\\");
+        if (empty($prepareListCommand)) {
+            $resultString .= SD::red("ДОСТУПНЫХ КОМАНД НЕТ!") . "\r\n";
+        } else {
+            $resultString .= SD::brown("Available commands:") . "\r\n";
+            $sortclasses = $this->sortCommandsByGroup($prepareListCommand, "Stub\Framework\Console\Commands\\");
+            foreach ($sortclasses as $key => $value) {
+                $resultString .= SD::brown($key) . "\r\n";
+                foreach ($value as $fclass) {
+                    /** @var Commands $currentClass */
+                    $currentClass = new $fclass();
+                    $resultString .= "  " . str_pad(SD::green($currentClass->name), 32);
+                    $resultString .= $currentClass->description . "\r\n";
+                }
             }
         }
         return $resultString;
     }
 
+    /**
+     * Возвращает массив всех классов приложения
+     *--------------------------------------------------------------------------------
+     * Для работы этого метода используется автозагрузчик ***composer***.
+     *
+     * ***Важно!!!***
+     * Должен быть сгенерирован оптимизированный автозагрузчик, используя -oпцию для работы со всеми классами.
+     * ***composer dump-autoload -o ***
+     * @return array
+     */
     private function getAllClasses(): array
     {
         global $composer;
@@ -72,10 +79,16 @@ class ListCommand extends Command implements Commands
                 $allClasses[] = '\\' . $class;
             }
         }
-        //var_dump($allClasses);
         return $allClasses;
     }
 
+    /**
+     * Возвращает массив классов заданного пространства имен
+     *--------------------------------------------------------------------------------
+     * Формирует одномерный массив содержащий пространства имен классов входящих в заданное пространство имен
+     * @param string $namespace - строка пространства имен в котором нужно искать все классы
+     * @return array - результирующий массив пространств имен классов входящих в заданное
+     */
     private function getClassesByNamespace(string $namespace): array
     {
         if (0 !== strpos($namespace, '\\')) {
@@ -96,6 +109,16 @@ class ListCommand extends Command implements Commands
         });
     }
 
+    /**
+     * Сортирует классы команд по группам
+     *--------------------------------------------------------------------------------
+     *
+     * сортировка происходит на основании указанного в каждом классе пространства имен
+     * @param array $prepareArrayCommandClasses Одномерный массив (пространств имен отобранных классов)
+     * @param string $namespace Исключаемый из наименований групп корень (базовое пространство имен)
+     * @return array Двумерный ассоциативный массив где key - это группа команд, value - одномерный
+     * массив пространств имен классов команд, входящих в группу.
+     */
     private function sortCommandsByGroup(array $prepareArrayCommandClasses, $namespace): array
     {
         if (0 !== strpos($namespace, '\\')) {
