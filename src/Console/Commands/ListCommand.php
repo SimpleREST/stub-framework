@@ -35,7 +35,7 @@ class ListCommand extends Command implements Commands
         //полный список классов
         //$classes = $this->getAllClasses();
         // сортируем список на предмет наличия только искомого пространства имен
-        $fclasses = $this->getClassesByNamespace("Stub\Framework\Console\Commands");
+        $fclasses = $this->getClassesByNamespace("Stub\Framework\Console\Commands\\");
         $resultString .= SD::brown("Available commands:") . "\r\n";
         foreach ($fclasses as $fclass) {
             //$resultString .= "Найден класс команды в пространстве имен" . SD::brown($fclass) . "\r\n";
@@ -47,9 +47,18 @@ class ListCommand extends Command implements Commands
         // формируем результирующую строку
 
         var_dump($fclasses);
-        $sortclasses = $this->sortCommandsByGroup($fclasses, "Stub\Framework\Console\Commands");
+        $sortclasses = $this->sortCommandsByGroup($fclasses, "Stub\Framework\Console\Commands\\");
         echo "ОТСОРТИРОВАННЫЕ КЛАССЫ";
         var_dump($sortclasses);
+        foreach ($sortclasses as $key => $value) {
+            $resultString .= SD::brown($key) . "\r\n";
+            foreach ($value as $fclass) {
+                /** @var Commands $currentClass */
+                $currentClass = new $fclass();
+                $resultString .= "  " . str_pad(SD::green($currentClass->name), 32);
+                $resultString .= $currentClass->description . "\r\n";
+            }
+        }
         return $resultString;
     }
 
@@ -63,7 +72,7 @@ class ListCommand extends Command implements Commands
                 $allClasses[] = '\\' . $class;
             }
         }
-        var_dump($allClasses);
+        //var_dump($allClasses);
         return $allClasses;
     }
 
@@ -95,12 +104,8 @@ class ListCommand extends Command implements Commands
         $resultClasses = array();
         foreach ($prepareArrayCommandClasses as $class) {
             $group = str_replace($namespace, "", $class);
-            //echo "Обрезаемая строка сзади";
-            //echo strrpos($group,'\\',1);
-            //$group = substr($group, strrpos($group,'\\',1));
-            $group = str_replace(substr($group, strrpos($group,'\\',1)), "", $group);
-            //$group = str_replace(strrpos($group,'\\',1), "", $group);
-            if (isset($resultClasses[$group])){
+            $group = str_replace(substr($group, strrpos($group, '\\', 1)), "", $group);
+            if (isset($resultClasses[$group])) {
                 $currentArr = $resultClasses[$group];
                 $currentArr[] = $class;
                 $resultClasses[$group] = $currentArr;
