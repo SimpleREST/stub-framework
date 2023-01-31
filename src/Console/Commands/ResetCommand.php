@@ -10,8 +10,7 @@ class ResetCommand extends Command implements Commands
     public function __construct()
     {
         $this->name = "reset";
-        $this->description = "Сбрасывает заглушку к первоначальному состоянию полностью (деструктивная функция,
-         все изменения сделанные ранее будут потеряны";
+        $this->description = "Сбрасывает заглушку к первоначальному состоянию полностью (деструктивная функция, все изменения сделанные ранее будут потеряны";
     }
 
     public function run(): string

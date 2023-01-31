@@ -55,23 +55,16 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
     {
         $this->commandStartedDateTime = new DateTime();
         try {
-            $this->output->writeln($this->input->getArguments()[1]);
-            $className = "Stub\Framework\Console\Commands\\".$this->input->getArguments()[1] . 'Command';
-            $this->output->writeln($className);
+            $className = "Stub\Framework\Console\Commands\\" . $this->input->getArguments()[1] . 'Command';
             $this->execute(new $className());
         } catch (Throwable $e) {
-            $this->output->writeln("Это на случай если ошибка возникнет, ее нужно передать на обработку (оформление) добавить к ней
-             данные разные окружения и уже потом выдать на гора...");
+            $this->output->writeln("Ошибка при выполнении команды..." . $e);
         }
     }
 
     protected function execute(Command $command)
     {
-        $this->output->writeln("Инициирую обращение к геттеру имени команды \r\n");
-        $this->output->writeln($command->getName());
-        $this->output->writeln("Инициирую обращение к основному методу команды \r\n");
         $this->output->writeln($command->run());
-        $this->output->writeln("Завершаю выполнение команды");
     }
 
     public function sayHello(): string
@@ -86,8 +79,9 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
      * @param $response
      * @return void
      */
-    public function terminate($request, $response)
+    public function terminate($request = null, $response = null)
     {
+        $this->app->terminate();
         exit($response);
     }
 }
