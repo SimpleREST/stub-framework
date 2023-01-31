@@ -66,8 +66,9 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
      * @param $response
      * @return void
      */
-    public function terminate($request, $response)
+    public function terminate($request = null, $response = null)
     {
+        $this->app->terminate();
         exit($response);
     }
 }

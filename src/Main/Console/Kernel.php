@@ -55,12 +55,10 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
     {
         $this->commandStartedDateTime = new DateTime();
         try {
-            $this->output->writeln($this->input->getArguments()[1]);
-            $className = "Stub\Framework\Console\Commands\\".$this->input->getArguments()[1] . 'Command';
-            $this->output->writeln($className);
+            $className = "Stub\Framework\Console\Commands\\" . $this->input->getArguments()[1] . 'Command';
             $this->execute(new $className());
         } catch (Throwable $e) {
-            $this->output->writeln("Ошибка при выполнении команды...". $e);
+            $this->output->writeln("Ошибка при выполнении команды..." . $e);
         }
     }
 
@@ -81,8 +79,9 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
      * @param $response
      * @return void
      */
-    public function terminate($request, $response)
+    public function terminate($request = null, $response = null)
     {
+        $this->app->terminate();
         exit($response);
     }
 }
