@@ -3,6 +3,8 @@
 namespace Stub\Framework\Console\Commands;
 
 use Stub\Framework\Console\Base\Command;
+use Stub\Framework\Console\Base\Input;
+use Stub\Framework\Console\Base\Output;
 use Stub\Framework\Console\Base\StringDecorator as SD;
 use Stub\Framework\Contracts\Console\Commands;
 use Stub\Framework\Main\Application;
@@ -21,11 +23,12 @@ class ListCommand extends Command implements Commands
      * Формирует список всех доступных в текущей версии SimpleStub Framework команд
      * с общей информацией о действиях команд ыи параметрах.
      *
-     * Детальная информация по каждой коменде может быть получена при использовании команды help с передачей
-     * в качестве параметра ей наименования команды, справку по которой нужно получить.
-     * @return string -  возвращает отформатированную для консоли строку результата.
+     * Детальная информация по каждой команде может быть получена при использовании команды
+     * help с передачей в качестве параметра ей наименования команды, справку по которой
+     * нужно получить.
+     * @return string - возвращает отформатированную для консоли строку результата.
      */
-    public function run(): string
+    public function run(Input $input = null, Output $output = null): string
     {
         $resultString = "SimpleStub Framework " . SD::green(Application::VERSION) . "\r\n\n";
         $resultString .= SD::brown("Usage:\r\n");
@@ -56,7 +59,11 @@ class ListCommand extends Command implements Commands
                 }
             }
         }
-        return $resultString;
+        $output->writeln($resultString);
+        for ($i = 1; $i <= 100000; $i++) {
+            $output->writess($i);
+        }
+        return "OK";
     }
 
     /**

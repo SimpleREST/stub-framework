@@ -37,4 +37,15 @@ class Output implements \Stub\Framework\Contracts\Console\Output
         }
 
     }
+
+    public function writess($message)
+    {
+        if (is_array($message)){
+            var_dump($message);
+        } else {
+            echo $message;
+            echo "\r";
+        }
+
+    }
 }
