@@ -36,7 +36,7 @@ class CountdownCommand extends Command
         // может быть set year - установить год
 
         $resultString = "SimpleStub Framework " . SD::green(Application::VERSION) . "\r\n\n";
-        $resultString = "Получена команда " . SD::green($input->getArguments()[1]) . "\r\n\n";
+        $resultString .= "Получена команда " . SD::green($input->getArguments()[1]) . "\r\n\n";
         $output->writeln($resultString);
         parent::run();
         return $resultString;

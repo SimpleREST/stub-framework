@@ -35,7 +35,8 @@ class ListCommand extends Command
         $resultString .= "command [options] [arguments]\r\n\n";
         $resultString .= SD::brown("Options:\r\n");
         $resultString .= "  " . str_pad(SD::green("-h, --help"), 32);
-        $resultString .= "Показать справку для выбранной команды, если команда не задана, будет выполнена команда" . SD::green("list") . "\r\n";
+        $resultString .= "Показать справку для выбранной команды, если команда не задана, будет выполнена команда"
+            . SD::green("list") . "\r\n";
         $resultString .= "  " . str_pad(SD::green("-q, --quiet"), 32);
         $resultString .= "Блокировать (не выводить / игнорировать) все сообщения (генерируемые при выполнении команды)\r\n";
         $resultString .= "  " . str_pad(SD::green("-V, --version"), 32);
@@ -43,27 +44,23 @@ class ListCommand extends Command
         $resultString .= "  " . str_pad(SD::green("-n, --no-interaction"), 32);
         $resultString .= "Не задавать никаких вопросов (блокировать интерактивный режим)\r\n\n";
 
-        $prepareListCommand = $this->getClassesByNamespace("Stub\Framework\Console\Commands\\");
+        $prepareListCommand = $this->getClassesByNamespace(__NAMESPACE__);
         if (empty($prepareListCommand)) {
             $resultString .= SD::red("ДОСТУПНЫХ КОМАНД НЕТ!") . "\r\n";
         } else {
             $resultString .= SD::brown("Available commands:") . "\r\n";
-            $sortclasses = $this->sortCommandsByGroup($prepareListCommand, "Stub\Framework\Console\Commands\\");
-            foreach ($sortclasses as $key => $value) {
+            $sortedAvailableClasses = $this->sortCommandsByGroup($prepareListCommand, __NAMESPACE__);
+            foreach ($sortedAvailableClasses as $key => $value) {
                 $resultString .= SD::brown($key) . "\r\n";
-                foreach ($value as $fclass) {
+                foreach ($value as $commandClass) {
                     /** @var Commands $currentClass */
-                    $currentClass = new $fclass();
+                    $currentClass = new $commandClass();
                     $resultString .= "  " . str_pad(SD::green($currentClass->name), 32);
                     $resultString .= $currentClass->description . "\r\n";
                 }
             }
         }
         $output->writeln($resultString);
-        for ($i = 1; $i <= 100000; $i++) {
-            $output->writeProgressLineD($i / 1000, "Проба", 120);
-        }
-        $output->writeln("");
         return "OK";
     }
 
@@ -73,7 +70,7 @@ class ListCommand extends Command
      * Для работы этого метода используется автозагрузчик ***composer***.
      *
      * ***Важно!!!***
-     * Должен быть сгенерирован оптимизированный автозагрузчик, используя -oпцию для работы со всеми классами.
+     * Должен быть сгенерирован оптимизированный автозагрузчик, используя опцию для работы со всеми классами.
      * ***composer dump-autoload -o ***
      * @return array
      */
@@ -127,7 +124,7 @@ class ListCommand extends Command
      * @return array Двумерный ассоциативный массив где key - это группа команд, value - одномерный
      * массив пространств имен классов команд, входящих в группу.
      */
-    private function sortCommandsByGroup(array $prepareArrayCommandClasses, $namespace): array
+    private function sortCommandsByGroup(array $prepareArrayCommandClasses, string $namespace): array
     {
         if (0 !== strpos($namespace, '\\')) {
             $namespace = '\\' . $namespace;
