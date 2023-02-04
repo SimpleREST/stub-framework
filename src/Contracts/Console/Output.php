@@ -9,7 +9,7 @@ interface Output
 {
     /**
      * Печатает строку в консоли
-     * @param $message
+     * @param string|array $message
      * @return mixed
      */
     public function write($message);

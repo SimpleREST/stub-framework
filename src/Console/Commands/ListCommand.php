@@ -61,7 +61,7 @@ class ListCommand extends Command
         }
         $output->writeln($resultString);
         for ($i = 1; $i <= 100000; $i++) {
-            $output->writess($i);
+            $output->writeProgressLine("Проба", $i/1000, 120);
         }
         return "OK";
     }

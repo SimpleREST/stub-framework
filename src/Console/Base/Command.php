@@ -49,7 +49,6 @@ abstract class Command implements Commands
         return $this->name;
     }
 
-
     /**
      * Основной рабочий метод родительского класса команды
      * --
