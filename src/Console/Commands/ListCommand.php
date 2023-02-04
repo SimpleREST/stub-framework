@@ -9,7 +9,7 @@ use Stub\Framework\Console\Base\StringDecorator as SD;
 use Stub\Framework\Contracts\Console\Commands;
 use Stub\Framework\Main\Application;
 
-class ListCommand extends Command implements Commands
+class ListCommand extends Command
 {
     public function __construct()
     {

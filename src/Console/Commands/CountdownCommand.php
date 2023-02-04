@@ -4,7 +4,6 @@ namespace Stub\Framework\Console\Commands;
 
 use Stub\Framework\Console\Base\Command;
 use Stub\Framework\Console\Base\StringDecorator as SD;
-use Stub\Framework\Contracts\Console\Commands;
 use Stub\Framework\Main\Application;
 use Stub\Framework\Console\Base\Input;
 use Stub\Framework\Console\Base\Output;
@@ -12,7 +11,7 @@ use Stub\Framework\Console\Base\Output;
 /**
  *
  */
-class CountdownCommand extends Command implements Commands
+class CountdownCommand extends Command
 {
     public function __construct()
     {
@@ -39,8 +38,7 @@ class CountdownCommand extends Command implements Commands
         $resultString = "SimpleStub Framework " . SD::green(Application::VERSION) . "\r\n\n";
         $resultString = "Получена команда " . SD::green($input->getArguments()[1]) . "\r\n\n";
         $output->writeln($resultString);
-
-
+        parent::run();
         return $resultString;
     }
 }

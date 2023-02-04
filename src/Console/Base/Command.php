@@ -2,7 +2,18 @@
 
 namespace Stub\Framework\Console\Base;
 
-abstract class Command
+use Stub\Framework\Contracts\Console\Commands;
+
+/**
+ * Абстрактный класс для всех команд
+ * ---
+ * Класс:
+ * - содержит реализации общих методов для всех команд;
+ * - инициирует все свойства команд, общие для всех команд;
+ * - имплементи́рует общий для всех интерфейс;
+ *
+ */
+abstract class Command implements Commands
 {
     /**
      * Имя команды (собственно сама команда как есть)
@@ -38,10 +49,17 @@ abstract class Command
         return $this->name;
     }
 
-    public function __construct()
+
+    /**
+     * Основной рабочий метод родительского класса команды
+     * --
+     * @param Input|null $input
+     * @param Output|null $output
+     * @return string
+     */
+    public function run(Input $input = null, Output $output = null): string
     {
-        $this->name = "No Name!!!";
-        $this->description = "NO Description !!!";
+        return "Empty...";
     }
 
 
