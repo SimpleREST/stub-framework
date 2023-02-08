@@ -4,6 +4,7 @@ namespace Stub\Framework\Http\View;
 
 use Stub\Framework\Contracts\Http\View;
 use Stub\Framework\Contracts\Main\Application;
+use Stub\Framework\Main\Assets\Resource as R;
 
 /**
  *Базовый класс вьюшки заглушки
@@ -34,12 +35,12 @@ class Stub implements View
         $this->docType = "<!DOCTYPE html>";
         $this->head = /** @lang text */
             "
-                    <title>{$app->get('base_title', 'Website in development')}</title>
+                    <title>" . R::$title . "</title>
                     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
                     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-                    <meta charset=\"{$app->get('base_charset', 'utf-8')}\">
-                    <meta content=\"{$app->get('base_description', 'SimpleStub')}\" name=\"description\">
-                    <meta content=\"{$app->get('base_keywords', 'SimpleStub')}\" name=\"keywords\">
+                    <meta charset=\"" . R::$charset . "\">
+                    <meta content=\"" . R::$description . "\" name=\"description\">
+                    <meta content=\"" . R::$keywords . "\" name=\"keywords\">
                 
                     <!-- Google Fonts -->
                     <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i\">
@@ -64,9 +65,7 @@ class Stub implements View
                             <div class=\"logo float-left\">
                                 <h1 class=\"text-light\">
                                     <a href=\"index.php\">
-                                        <span>
-                                            {$app->get('domain', 'SimpleStub')}
-                                        </span>
+                                        <span>" . R::$domain . " </span>
                                     </a>
                                 </h1>
                             </div>
