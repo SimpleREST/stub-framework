@@ -11,7 +11,7 @@ class Resource
      * (На уровне фреймворка)
      * @final @var string
      */
-    public static $title = "Website in development";
+    public static $titlett = "Website in development";
     public static $charset = "utf-8";
     public static $description = "SimpleStub";
     public static $keywords = "SimpleStub";
@@ -34,7 +34,7 @@ class Resource
     public static $http = "simplerest.ru";
     public static $base_lang = "en";
 
-    private function __construct()
+    public function __construct()
     {
     }
 }
