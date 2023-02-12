@@ -1,15 +1,17 @@
 <?php
 
 namespace Stub\Framework\Main\Assets;
+use Stub\Framework\Contracts\Main\ContainingResources;
+use Stub\Framework\Main\Assets\StringResources as str;
 
-class Resource
+class Resource implements ContainingResources
 {
     /**
      * Предопределенное значение строкового параметра
      * ---
      * внутри HTML тега (<TITLE>...</TITLE>)
      * (На уровне фреймворка)
-     * @final @var string
+     * @final @var string::
      */
     public static $titlett = "Website in development";
     public static $charset = "utf-8";

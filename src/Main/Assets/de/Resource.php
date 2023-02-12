@@ -1,6 +1,6 @@
 <?php
 
-namespace Stub\Framework\Main\Assets\Ru;
+namespace Stub\Framework\Main\Assets\De;
 
 use Stub\Framework\Contracts\Main\ContainingResources;
 
@@ -13,6 +13,6 @@ class Resource extends \Stub\Framework\Main\Assets\Resource implements Containin
      * (На уровне фреймворка)
      * @final @var string
      */
-    public static $titlett = "Сайт находится в стадии разработки";
+    public static $titlett = "Hände hoch!!! Ausweis!";
 
 }

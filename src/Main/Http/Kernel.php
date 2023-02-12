@@ -56,7 +56,7 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
     public function getCurrentStub(): string
     {
         $stub = new Stub($this->app);
-        $stub->generate($this->app);
+        //$stub->generate($this->app);
         return $stub->getDocumentResult();
     }
 

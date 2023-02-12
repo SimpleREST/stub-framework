@@ -2,8 +2,11 @@
 
 namespace Stub\Framework\Http\View;
 
+use Locale;
 use Stub\Framework\Contracts\Http\View;
 use Stub\Framework\Contracts\Main\Application;
+use Stub\Framework\Contracts\Main\ContainingResources;
+use Stub\Framework\Main\Assets\Resource;
 use Stub\Framework\Main\Assets\Resource as R;
 
 /**
@@ -19,26 +22,38 @@ class Stub implements View
 
     /**
      * @param Application $app
-     * @param string $lng
      */
-    public function __construct(Application $app, string $lng = 'ru')
+    public function __construct(Application $app)
     {
-        $this->generate($app);
+        //$this->generate($app, new Resource());
+        $locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        //echo $locale;
+        $classn = 'Stub\Framework\Main\Assets\\' . $locale . '\Resource';
+        if (class_exists($classn)) {
+            $this->generate($app, new $classn());
+        } else {
+            $this->generate($app, new Resource());
+        }
     }
 
     /**
      *
      */
-    public function generate(Application $app)
+    public function generate(Application $app, ContainingResources $res)
     {
+        /**
+         * Технический комментарий
+         * @var \Stub\Framework\Main\Assets\De\Resource $r
+         */
+        $r = $res;
         $this->docType = "<!DOCTYPE html>";
         $this->head = /** @lang text */
             "
-                    <title>" . R::$titlett . "</title>
+                    <title>" . $r::$titlett . "</title>
                     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
                     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
                     <meta charset=\"" . R::$charset . "\">
-                    <meta content=\"" . R::$description . "\" name=\"description\">
+                    <meta content=\"" . $r::$description . "\" name=\"description\">
                     <meta content=\"" . R::$keywords . "\" name=\"keywords\">
                 
                     <!-- Google Fonts -->
