@@ -13,6 +13,6 @@ class Resource extends \Stub\Framework\Main\Assets\Resource implements Containin
      * (На уровне фреймворка)
      * @final @var string
      */
-    public static $title = "Hände hoch!!! Ausweis!";
+    public static $title_text = "Hände hoch!!! Ausweis!";
 
 }

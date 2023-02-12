@@ -1,19 +1,33 @@
 <?php
 
 namespace Stub\Framework\Main\Assets;
-use Stub\Framework\Contracts\Main\ContainingResources;
-use Stub\Framework\Main\Assets\StringResources as str;
 
+use Stub\Framework\Contracts\Main\ContainingResources;
+
+/**
+ * Основной набор строковых ресурсов (главный)  - на уровне фреймворка
+ * ---
+ * Класс содержит строковые ресурсы для представления без определения языкового параметра
+ * Данные из этого набора подставляются всегда, когда не определен предпочтительный
+ * язык на стороне клиента, или определенный язык не поддерживается.
+ *
+ */
 class Resource implements ContainingResources
 {
     /**
-     * Предопределенное значение строкового параметра
-     * ---
-     * внутри HTML тега (<TITLE>...</TITLE>)
-     * (На уровне фреймворка)
-     * @final @var string::
+     *  Строки / основной набор / фреймворк
+     * ----
+     * Значение строки внутри HTML тега {TITLE}
+     * @var string
      */
-    public static $title = "Website in development";
+    public static $title_text = "Website in development";
+
+    /**
+     * *  Строки / основной набор / фреймворк
+     * ----
+     * Значение строки внутри HTML тега {TITLE}
+     * @var string
+     */
     public static $charset = "utf-8";
     public static $description = "SimpleStub";
     public static $keywords = "SimpleStub";
