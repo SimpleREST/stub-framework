@@ -5,9 +5,7 @@ namespace Stub\Framework\Http\View;
 use Locale;
 use Stub\Framework\Contracts\Http\View;
 use Stub\Framework\Contracts\Main\Application;
-use Stub\Framework\Contracts\Main\ContainingResources;
 use Stub\Framework\Main\Assets\Resource;
-use Stub\Framework\Main\Assets\Resource as R;
 
 /**
  *Базовый класс вьюшки заглушки
@@ -56,9 +54,8 @@ class Stub implements View
         $this->head = /** @lang text */
             "
                     <title>" . $r::$title_text . '</title>
-                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <meta charset="' . $r::$html_lang. '">
+                    <meta charset="' . $r::$charset . '">
                     <meta content="' . $r::$description . '" name="description">
                     <meta content="' . $r::$keywords . '" name="keywords">
                 
@@ -167,7 +164,7 @@ class Stub implements View
                                 All Rights Reserved
                             </div>
                             <div class="credits">
-                                Powered by <a href="https://simplerest.ru/">SIMPLEREST.RU</a> v.{$app->version()}
+                                Powered by <a href="https://simplerest.ru/">SIMPLEREST.RU</a> v.' . $app->version() . '
                             </div>
                         </div>
                     </footer><!-- End #footer -->

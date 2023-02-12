@@ -18,6 +18,11 @@ class Resource implements ContainingResources
      *  Строки / основной набор / фреймворк
      * ----
      * Значение строки внутри HTML тега {TITLE}
+     * * <p><i> содержимое в сжатом формате рассказывающий поисковым системам и посетителям о том, что представлено или
+     * происходит на данной странице сайта. Он отображается во вкладке браузера, а также виден в поисковых системах при
+     * удовлетворяющем запросе. Старайтесь не делать заголовок слишком длинным (пользователь чаще всего увидит только
+     * его часть). Сделайте заголовок уникальным (добавить бренд, слоган и т.п.), не злоупотребляйте ключевыми словами
+     * шаблонами</i>
      * @var string
      */
     public static $title_text = "Website in development";
@@ -25,34 +30,160 @@ class Resource implements ContainingResources
     /**
      * *  Строки / основной набор / фреймворк
      * ----
-     * Значение строки внутри HTML тега {TITLE}
+     * Содержимое метатега charset.
+     * Строка задаёт кодировку символов, используемую на странице.
+     * Рекомендуется оставить <b><i>utf-8</i></b>
      * @var string
      */
     public static $charset = "utf-8";
-    public static $description = "SimpleStub";
-    public static $keywords = "SimpleStub";
+    /**
+     * Строки / основной набор / фреймворк
+     * -----------------------------------
+     * Содержимое метатега description.
+     * <p><i>!!! <b>Важно</b> что данная информация является одним из источников, на основе которых формируются описания
+     * страниц сайта в результатах поиска большинства поисковых систем. Убедитесь, что description отражает содержимое
+     * страницы, содержит правильно выстроенные предложения, без злоупотребления ключевыми словами, фразами, заглавными
+     * буквами, рекламными лозунгами и пр.
+     * <p>Назначение метаописания — дать пользователю более полную информацию о странице и побудить перейти на нее...</i>
+     * @var string
+     */
+    public static $description = "SimpleStub - Website in development";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
+    public static $keywords = "SimpleStub, Website in development";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки содержащее ключевые слова отражающие содержание страницы, в виде строки в которой
+     * ключевые слова или фразы перечислены через запятую.
+     * ####<i>!!!Может учитываться поисковыми системами при определении соответствия страницы поисковым запросам!!!</i>
+     * @var string
+     */
     public static $domain = "SimpleStub";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contacts_link_text = "administrator contacts";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $base_background = "simpleplug-base-bg.jpg";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $base_title = "We Build Simple REST";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $base_note = "SimpleStub / We Build";
-    public static $countdown_deadline = "2025/12/30";
-    public static $countdown_pattern = "%w w %d d %H:%M:%S";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Строковое представление планируемой даты запуска проекта / окончания периода на который выставлена заглушка.
+     * <p><i>Более подробная инструкция о правилах формирования строкового представления даты опубликована на сайте
+     * проекта ({@link http://simplerest.ru})</i></p>
+     * @example  2024/12/30
+     * @var string
+     */
+    public static $countdown_deadline = "2024/12/30";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Паттерн представления строки таймера обратного отсчета (форматированная строка)
+     * Правила составления паттерна представлены в описание на сайте проекта ({@link http://simplerest.ru})
+     * @var string
+     */
+    public static $countdown_pattern = "Before the launch of the site <BR> %w weeks %d days <br> %H:%M:%S";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contacts_section_title_text = "Contacts";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contacts_section_address_title_text = "address";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contacts_section_address_content_text = "___";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contacts_section_phone_title_text = "Phone";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contact_phone_to_script = "";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contact_phone_to_display = "+_ (___) ___-__-__";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contacts_section_email_title_text = "Email";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contact_email_to_script = "";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $contact_email_to_display = "";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки
+     * @var string
+     */
     public static $http = "simplerest.ru";
     /**
      * Строки / основной набор / фреймворк
      * ----
      * Значение строки (языковой код) внутри тега {HTML}
-     * ----
      * @var string
      */
     public static $html_lang = "en";
