@@ -14,5 +14,13 @@ class Resource extends \Stub\Framework\Main\Assets\Resource implements Containin
      * @final @var string
      */
     public static $title_text = "Hände hoch!!! Ausweis!";
+    /**
+     * Строки / набор для DE локализации / фреймворк
+     * ----
+     * Значение строки (языковой код) внутри тега {HTML}
+     * ----
+     * @var string
+     */
+    public static $html_lang = "de";
 
 }

@@ -58,7 +58,7 @@ class Stub implements View
                     <title>" . $r::$title_text . '</title>
                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <meta charset="' . $r::$charset . '">
+                    <meta charset="' . $r::$html_lang. '">
                     <meta content="' . $r::$description . '" name="description">
                     <meta content="' . $r::$keywords . '" name="keywords">
                 
@@ -185,7 +185,7 @@ class Stub implements View
         $r = $this->stringResources;
         return sprintf(/** @lang text */ '%s<html lang="%s">%s<body>%s%s</body></html>',
             $this->docType,
-            $r::$base_lang,
+            $r::$html_lang,
             $this->head,
             $this->body,
             $this->endHtmlScripts);

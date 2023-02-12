@@ -48,7 +48,14 @@ class Resource implements ContainingResources
     public static $contact_email_to_script = "";
     public static $contact_email_to_display = "";
     public static $http = "simplerest.ru";
-    public static $base_lang = "en";
+    /**
+     * Строки / основной набор / фреймворк
+     * ----
+     * Значение строки (языковой код) внутри тега {HTML}
+     * ----
+     * @var string
+     */
+    public static $html_lang = "en";
 
     public function __construct()
     {
