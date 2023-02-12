@@ -13,6 +13,6 @@ class Resource extends \Stub\Framework\Main\Assets\Resource implements Containin
      * (На уровне фреймворка)
      * @final @var string
      */
-    public static $titlett = "Сайт находится в стадии разработки";
+    public static $title = "Сайт находится в стадии разработки";
 
 }

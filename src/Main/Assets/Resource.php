@@ -13,7 +13,7 @@ class Resource implements ContainingResources
      * (На уровне фреймворка)
      * @final @var string::
      */
-    public static $titlett = "Website in development";
+    public static $title = "Website in development";
     public static $charset = "utf-8";
     public static $description = "SimpleStub";
     public static $keywords = "SimpleStub";

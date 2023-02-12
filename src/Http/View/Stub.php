@@ -49,7 +49,7 @@ class Stub implements View
         $this->docType = "<!DOCTYPE html>";
         $this->head = /** @lang text */
             "
-                    <title>" . $r::$titlett . "</title>
+                    <title>" . $r::$title . "</title>
                     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
                     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
                     <meta charset=\"" . R::$charset . "\">
