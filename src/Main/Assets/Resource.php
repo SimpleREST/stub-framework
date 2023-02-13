@@ -74,10 +74,10 @@ class Resource implements ContainingResources
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Имя файла картинки фона заглушки расположенного в каталоге img
      * @var string
      */
-    public static $base_background = "simpleplug-base-bg.jpg";
+    public static $base_background = "simpleplug-main-bg.jpg";
     /**
      * Строки / основной набор / фреймворк
      * ----
@@ -101,7 +101,7 @@ class Resource implements ContainingResources
      * @example  2024/12/30
      * @var string
      */
-    public static $countdown_deadline = "2024/12/30";
+    public static $countdown_deadline = "2023-12-31T23:59:59+03:00";
     /**
      * Строки / основной набор / фреймворк
      * ----
