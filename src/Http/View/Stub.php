@@ -114,7 +114,7 @@ class Stub implements View
                             <div class="container">
                     
                                 <div class="section-title">
-                                    <h2>' . $r::$contacts_section_title_text . '</h2>
+                                    <h2>' . $r::$contacts_section_title . '</h2>
                                 </div>
                     
                                 <div class="row contact-info">
@@ -122,15 +122,15 @@ class Stub implements View
                                     <div class="col-md-4">
                                         <div class="contact-address">
                                             <i class="icofont-google-map"></i>
-                                            <h3>' . $r::$contacts_section_address_title_text . "</h3>
-                                            <address>" . $r::$contacts_section_address_content_text . '</address>
+                                            <h3>' . $r::$contacts_section_address_title . "</h3>
+                                            <address>" . $r::$contacts_section_address_content . '</address>
                                         </div>
                                     </div>
                     
                                     <div class="col-md-4">
                                         <div class="contact-phone">
                                             <i class="icofont-phone"></i>
-                                            <h3>' . $r::$contacts_section_phone_title_text . '</h3>
+                                            <h3>' . $r::$contacts_section_phone_title . '</h3>
                                             <p>
                                                 <a href="tel:' . $r::$contact_phone_to_script . "\">
                                                     " . $r::$contact_phone_to_display . '</a>
@@ -141,7 +141,7 @@ class Stub implements View
                                     <div class="col-md-4">
                                         <div class="contact-email">
                                             <i class="icofont-envelope"></i>
-                                            <h3>' . $r::$contacts_section_email_title_text . '</h3>
+                                            <h3>' . $r::$contacts_section_email_title . '</h3>
                                             <p>
                                                 <a href="mailto: ' . $r::$contact_email_to_script . "\">
                                                     " . $r::$contact_email_to_display . '
@@ -160,7 +160,7 @@ class Stub implements View
                     <footer id="footer">
                         <div class="container">
                             <div class="copyright">
-                                &copy; Copyright <strong><span>' . $r::$http . '</span></strong>
+                                &copy; Copyright <strong><span>' . $r::$copyright . '</span></strong>
                                 All Rights Reserved
                             </div>
                             <div class="credits">
@@ -182,7 +182,7 @@ class Stub implements View
         $r = $this->stringResources;
         return sprintf(/** @lang text */ '%s<html lang="%s">%s<body>%s%s</body></html>',
             $this->docType,
-            $r::$html_lang,
+            $r::$lang,
             $this->head,
             $this->body,
             $this->endHtmlScripts);

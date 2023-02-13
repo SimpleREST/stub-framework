@@ -113,80 +113,84 @@ class Resource implements ContainingResources
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Заголовок секции содержащей контактную информацию
      * @var string
      */
-    public static $contacts_section_title_text = "Contacts";
+    public static $contacts_section_title = "Contacts";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Заголовок подсекции адреса (секция контактной информации)
      * @var string
      */
-    public static $contacts_section_address_title_text = "address";
+    public static $contacts_section_address_title = "address";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Содержание подсекции адреса (секция контактной информации)
      * @var string
      */
-    public static $contacts_section_address_content_text = "___";
+    public static $contacts_section_address_content = "___";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Заголовок подсекции контактного телефона (секция контактной информации)
      * @var string
      */
-    public static $contacts_section_phone_title_text = "Phone";
+    public static $contacts_section_phone_title = "Phone";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Контактный телефон передаваемый в скрипт для набора номера (изначально не виден посетителю сайта и находится в
+     * коде страницы
      * @var string
      */
     public static $contact_phone_to_script = "";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Контактный телефон отображаемый на странице заглушки, или иная строка вместо номера, которую посетитель
+     * непосредственно наблюдает при посещении страницы
      * @var string
      */
     public static $contact_phone_to_display = "+_ (___) ___-__-__";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Заголовок подсекции контактного адреса электронной почты (секция контактной информации)
      * @var string
      */
-    public static $contacts_section_email_title_text = "Email";
+    public static $contacts_section_email_title = "Email";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Контактный адрес электронной почты передаваемый в скрипт (в вие гиперссылки) для формирования электронного письма
+     * в почтовой программе (изначально не виден посетителю сайта, располагается в коде страницы)
      * @var string
      */
     public static $contact_email_to_script = "";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Контактный адрес электронной почты отображаемый на странице заглушки, или иная строка вместо адреса,
+     * которую посетитель непосредственно наблюдает при посещении страницы
      * @var string
      */
     public static $contact_email_to_display = "";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки
+     * Наименование проекта для копирайта
      * @var string
      */
-    public static $http = "simplerest.ru";
+    public static $copyright = "simplerest.ru";
     /**
      * Строки / основной набор / фреймворк
      * ----
-     * Значение строки (языковой код) внутри тега {HTML}
+     * Код языка по ISO 639-1 (двухбуквенный) содержимого страницы
      * @var string
      */
-    public static $html_lang = "en";
+    public static $lang = "en";
 
     public function __construct()
     {

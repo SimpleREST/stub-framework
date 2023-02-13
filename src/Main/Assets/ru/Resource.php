@@ -21,6 +21,6 @@ class Resource extends \Stub\Framework\Main\Assets\Resource implements Containin
      * ----
      * @var string
      */
-    public static $html_lang = "ru";
+    public static $lang = "ru";
 
 }
