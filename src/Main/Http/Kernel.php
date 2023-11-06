@@ -52,6 +52,8 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
     }
 
     /**
+     * Возвращает в виде строки готовый код заглушки
+     * @param BaseDefaultStubResource $r набор строковых параметров для заглушки (модифицированный)
      * @return string
      */
     public function getCurrentStub(BaseDefaultStubResource $r): string
