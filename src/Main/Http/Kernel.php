@@ -5,6 +5,7 @@ namespace Stub\Framework\Main\Http;
 use DateTime;
 use Stub\Framework\Contracts\Main\Application;
 use Stub\Framework\Http\View\Stub;
+use Stub\Framework\Main\Assets\BaseDefaultStubResource;
 
 /**
  * Класс ядра НТТР
@@ -53,9 +54,12 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
     /**
      * @return string
      */
-    public function getCurrentStub(): string
+    public function getCurrentStub(BaseDefaultStubResource $r): string
     {
-        $stub = new Stub($this->app);
+        $stub = "";
+        if (!empty($this->app)) {
+            $stub = new Stub($this->app, $r);
+        }
         return $stub->getDocumentResult();
     }
 

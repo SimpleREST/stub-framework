@@ -15,7 +15,7 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.0.11';
+    const VERSION = '0.1.1';
 
     /**
      * Массив конфигурационных параметров заглушки
@@ -59,7 +59,7 @@ class Application implements BaseApplicationContract
         $formattedVersionString = "";
         if (defined('STUB_APP_VERSION')) {
             $formattedVersionString = STUB_APP_VERSION;
-        };
+        }
         $formattedVersionString .= "/" . static::VERSION;
         return $formattedVersionString;
     }

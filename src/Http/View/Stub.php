@@ -2,10 +2,9 @@
 
 namespace Stub\Framework\Http\View;
 
-use Locale;
 use Stub\Framework\Contracts\Http\View;
 use Stub\Framework\Contracts\Main\Application;
-use Stub\Framework\Main\Assets\Resource;
+use Stub\Framework\Main\Assets\BaseDefaultStubResource;
 
 /**
  *Базовый класс вьюшки заглушки
@@ -25,17 +24,12 @@ class Stub implements View
      * ----
      * Помимо прочего выполняется назначение класса ресурсов в зависимости от локали пользователя
      * @param Application $app
+     * @param BaseDefaultStubResource $r
      */
-    public function __construct(Application $app)
+    public function __construct(Application $app, BaseDefaultStubResource $r)
     {
-        $locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        $stringClassName = 'Stub\Framework\Main\Assets\\' . $locale . '\Resource';
-        if (class_exists($stringClassName)) {
-            $this->stringResources = new $stringClassName ();
-        } else {
-            $this->stringResources = new Resource();
-        }
-        $this->generate($app, $this->stringResources);
+        $this->stringResources = $r;
+        $this->generate($app);
     }
 
     /**
@@ -43,11 +37,11 @@ class Stub implements View
      * @param Application $app
      * @return void
      */
-    public function generate(Application $app)
+    private function generate(Application $app)
     {
         /**
          * Технический комментарий
-         * @var \Stub\Framework\Main\Assets\De\Resource $r
+         * @var \Stub\Framework\Main\Assets\BaseDefaultStubResource $r
          */
         $r = $this->stringResources;
         $this->docType = "<!DOCTYPE html>";

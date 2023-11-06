@@ -5,17 +5,17 @@ namespace Stub\Framework\Main\Assets;
 use Stub\Framework\Contracts\Main\ContainingResources;
 
 /**
- * Основной набор строковых ресурсов (главный)  - на уровне фреймворка
+ * Основной набор строковых ресурсов (главный) - на уровне фреймворка
  * ---
  * Класс содержит строковые ресурсы для представления без определения языкового параметра
  * Данные из этого набора подставляются всегда, когда не определен предпочтительный
  * язык на стороне клиента, или определенный язык не поддерживается.
  *
  */
-class Resource implements ContainingResources
+abstract class BaseDefaultStubResource implements ContainingResources
 {
     /**
-     *  Строки / основной набор / фреймворк
+     * Строки / основной набор / фреймворк
      * ----
      * Значение строки внутри HTML тега {TITLE}
      * * <p><i> содержимое в сжатом формате рассказывающий поисковым системам и посетителям о том, что представлено или
@@ -28,7 +28,7 @@ class Resource implements ContainingResources
     public static $title_text = "Website in development";
 
     /**
-     * *  Строки / основной набор / фреймворк
+     * Строки / основной набор / фреймворк
      * ----
      * Содержимое метатега charset.
      * Строка задаёт кодировку символов, используемую на странице.
@@ -191,8 +191,4 @@ class Resource implements ContainingResources
      * @var string
      */
     public static $lang = "en";
-
-    public function __construct()
-    {
-    }
 }
