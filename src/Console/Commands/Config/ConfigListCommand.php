@@ -3,9 +3,10 @@
 namespace Stub\Framework\Console\Commands\Config;
 
 use Stub\Framework\Console\Base\Command;
-use Stub\Framework\Contracts\Console\Commands;
+use Stub\Framework\Console\Base\Input;
+use Stub\Framework\Console\Base\Output;
 
-class ConfigListCommand extends Command implements Commands
+class ConfigListCommand extends Command
 {
     public function __construct()
     {
@@ -13,7 +14,7 @@ class ConfigListCommand extends Command implements Commands
         $this->description = "Выводит список всех конфигурационных параметров в виде таблицы";
     }
 
-    public function run(): string
+    public function run(Input $input = null, Output $output = null): string
     {
         echo "отработал метод" . $this::getName();
         return " Ok!";

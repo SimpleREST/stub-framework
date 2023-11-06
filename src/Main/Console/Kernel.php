@@ -6,6 +6,7 @@ use DateTime;
 use Stub\Framework\Console\Base\Command;
 use Stub\Framework\Console\Base\Input;
 use Stub\Framework\Console\Base\Output;
+use Stub\Framework\Contracts\Console\Commands;
 use Stub\Framework\Contracts\Console\Input as InputContract;
 use Stub\Framework\Contracts\Console\Output as OutputContract;
 use Stub\Framework\Contracts\Main\Application;
@@ -62,9 +63,10 @@ class Kernel implements \Stub\Framework\Contracts\Console\Kernel
         }
     }
 
-    protected function execute(Command $command)
+    protected function execute(Commands $command)
     {
-        $this->output->writeln($command->run());
+        //$this->output->writeln($command->run());
+        $command->run($this->input, $this->output);
     }
 
     public function sayHello(): string

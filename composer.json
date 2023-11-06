@@ -15,7 +15,9 @@
     }
   ],
   "minimum-stability": "dev",
-  "require": {},
+  "require": {
+    "ext-intl": "*"
+  },
   "autoload": {
     "psr-4": {
       "Stub\\Framework\\": "src/"

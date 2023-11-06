@@ -5,6 +5,7 @@ namespace Stub\Framework\Main\Http;
 use DateTime;
 use Stub\Framework\Contracts\Main\Application;
 use Stub\Framework\Http\View\Stub;
+use Stub\Framework\Main\Assets\BaseDefaultStubResource;
 
 /**
  * Класс ядра НТТР
@@ -46,17 +47,19 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
      */
     public function sayHello(): string
     {
-        echo "Hello!! It is Console Kernel...";
-        return "Hi!! It is Console Kernel...";
+        echo "Hello!! It is Http Kernel...";
+        return "Hi!! It is Http Kernel...";
     }
 
     /**
      * @return string
      */
-    public function getCurrentStub(): string
+    public function getCurrentStub(BaseDefaultStubResource $r): string
     {
-        $stub = new Stub($this->app);
-        $stub->generate($this->app);
+        $stub = "";
+        if (!empty($this->app)) {
+            $stub = new Stub($this->app, $r);
+        }
         return $stub->getDocumentResult();
     }
 
