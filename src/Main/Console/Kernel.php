@@ -3,7 +3,6 @@
 namespace Stub\Framework\Main\Console;
 
 use DateTime;
-use Stub\Framework\Console\Base\Command;
 use Stub\Framework\Console\Base\Input;
 use Stub\Framework\Console\Base\Output;
 use Stub\Framework\Contracts\Console\Commands;
