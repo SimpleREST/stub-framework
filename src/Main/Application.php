@@ -21,7 +21,7 @@ class Application implements BaseApplicationContract
      * Массив конфигурационных параметров заглушки
      * @var array $params [mixed]
      */
-    private $params;
+    //private $params;
 
     /**
      * The base path for the SimpleStub installation.
@@ -47,7 +47,7 @@ class Application implements BaseApplicationContract
         if ($basePath) {
             $this->basePath = rtrim($basePath, '\/');
         }
-        $this->params = include_once($this->basePath . '\config\config.php');
+        //$this->params = include_once($this->basePath . '\config\config.php');
     }
 
     /**
@@ -98,8 +98,8 @@ class Application implements BaseApplicationContract
      * @param mixed $default
      * @return mixed
      */
-    function get(string $key, $default = null)
-    {
-        return $this->params[$key] ?: $default;
-    }
+//    function get(string $key, $default = null)
+//    {
+//        return $this->params[$key] ?: $default;
+//    }
 }

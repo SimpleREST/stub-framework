@@ -49,6 +49,6 @@ interface Application
      * @param $default
      * @return mixed
      */
-    public function get(string $key, $default = null);
+    //public function get(string $key, $default = null);
 
 }
