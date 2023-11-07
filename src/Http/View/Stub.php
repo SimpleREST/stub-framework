@@ -57,15 +57,15 @@ class Stub implements View
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i">
                 
                     <!-- Favicons -->
-                    <link href="img/favicon.png" rel="icon">
-                    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+                    <link href="/img/favicon.png" rel="icon">
+                    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
                 
                     <!-- Vendor CSS Files -->
-                    <link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-                    <link href="vendor/simplerest/icofont/icofont.min.css" rel="stylesheet">
+                    <link href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+                    <link href="/vendor/simplerest/icofont/icofont.min.css" rel="stylesheet">
                 
                     <!-- Template Main CSS File -->
-                    <link href="css/main.css" rel="stylesheet">
+                    <link href="/css/main.css" rel="stylesheet">
                 ';
 
         $this->body = /** @lang text */
@@ -90,7 +90,7 @@ class Stub implements View
                     <div class="container-fluid" style="padding-right: 0; padding-left: 0;">
                     <!-- ======= Base Stub Section ======= -->
                     <section id="stub"
-                             style="background-image: url(\'img/' . $r::$base_background . '\')">
+                             style="background-image: url(\'/img/' . $r::$base_background . '\')">
                         <div class="stub-container">
                             <BR><BR>
                             <h1>' . $r::$base_title . "</h1>
@@ -164,7 +164,7 @@ class Stub implements View
                     </footer><!-- End #footer -->
                 ';
         $this->endHtmlScripts = /** @lang text */
-            '<script src="js/main.js"></script>';
+            '<script src="/js/main.js"></script>';
     }
 
     /**
