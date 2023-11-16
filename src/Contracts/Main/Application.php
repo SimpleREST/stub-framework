@@ -25,16 +25,16 @@ interface Application
     public function basePath(string $path = ''): string;
 
     /**
-     * Пpинимает настройки кконфигурации текущего выполнения
+     * Пpинимает настройки конфигурации текущего выполнения
      *
-     * @param MainConfig $path
+     * @param MainConfig $param
      * @return void
      */
     public function setConfig(MainConfig $param);
 
     /**
-     * Возвращает настройки кконфигурации текущего выполнения
-     * привдя к общему интерфейсу
+     * Возвращает настройки конфигурации текущего выполнения
+     * с использованием общего интерфейса редактирования конфигурации
      *
      * @return UserEditable
      */

@@ -42,7 +42,7 @@ class Stub implements View
     {
         /**
          * Технический комментарий
-         * @var \Stub\Framework\Main\Assets\BaseDefaultStubResource $r
+         * @var BaseDefaultStubResource $r
          */
         $app = $this->app;
         $r = $this->stringResources;
@@ -194,14 +194,7 @@ class Stub implements View
             $this->endHtmlScripts);
     }
 
-    private function getLanguageSet(BaseDefaultStubResource $r): string
-    {
-        $currentLanguageResourceCod = strtoupper((explode('\\', get_class($r)))[2]);
-        //var_dump($_ENV);
-        return $currentLanguageResourceCod;
-    }
-
-    private function putLanguageSelector(string $languageCode, array $c = array())
+    private function putLanguageSelector(string $languageCode, array $c = array()): string
     {
         $tpl = "";
         if (empty($c)) {
