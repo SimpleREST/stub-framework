@@ -190,5 +190,5 @@ abstract class BaseDefaultStubResource implements ContainingResources
      * Код языка по ISO 639-1 (двухбуквенный) содержимого страницы
      * @var string
      */
-    public static $lang = "en";
+    public static $lang = "";
 }

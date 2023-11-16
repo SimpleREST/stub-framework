@@ -4,8 +4,10 @@ namespace Stub\Framework\Main\Http;
 
 use DateTime;
 use Stub\Framework\Contracts\Main\Application;
+use Stub\Framework\Contracts\Main\UserEditable;
 use Stub\Framework\Http\View\Stub;
 use Stub\Framework\Main\Assets\BaseDefaultStubResource;
+use Stub\Framework\Main\MainConfig;
 
 /**
  * Класс ядра НТТР
@@ -17,6 +19,8 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
      * @var Application
      */
     protected $app;
+
+    private $config;
 
     /**
      * Дата и время старта обрабатываемого запроса
@@ -75,5 +79,16 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
     {
         $this->app->terminate();
         exit($response);
+    }
+
+    public function setConfig(MainConfig $param)
+    {
+        $this->config = $param;
+        $this->app->setConfig($param);
+    }
+
+    public function getConfig(): UserEditable
+    {
+        return $this->app->getConfig();
     }
 }

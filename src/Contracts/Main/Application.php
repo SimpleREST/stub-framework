@@ -2,6 +2,8 @@
 
 namespace Stub\Framework\Contracts\Main;
 
+use Stub\Framework\Main\MainConfig;
+
 /**
  * Интерфейс приложения
  */
@@ -21,6 +23,22 @@ interface Application
      * @return string
      */
     public function basePath(string $path = ''): string;
+
+    /**
+     * Пpинимает настройки кконфигурации текущего выполнения
+     *
+     * @param MainConfig $path
+     * @return void
+     */
+    public function setConfig(MainConfig $param);
+
+    /**
+     * Возвращает настройки кконфигурации текущего выполнения
+     * привдя к общему интерфейсу
+     *
+     * @return UserEditable
+     */
+    public function getConfig(): UserEditable;
 
     /**
      * Возвращает установленную локаль.
