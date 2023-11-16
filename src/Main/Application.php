@@ -3,6 +3,7 @@
 namespace Stub\Framework\Main;
 
 use Stub\Framework\Contracts\Main\Application as BaseApplicationContract;
+use Stub\Framework\Contracts\Main\UserEditable;
 
 /**
  * Основной класс приложения (единый для консоли, http  rest APi
@@ -15,7 +16,7 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.1.2';
+    const VERSION = '0.1.3';
 
     /**
      * The base path for the SimpleStub installation.
@@ -31,6 +32,12 @@ class Application implements BaseApplicationContract
      */
     protected $namespace;
 
+    /**
+     * The application configuration object.
+     *
+     * @var string
+     */
+    private $config;
 
     /**
      * Конструктор экземпляра класса приложения
@@ -77,5 +84,15 @@ class Application implements BaseApplicationContract
     public function getNamespace(): string
     {
         return __NAMESPACE__;
+    }
+
+    public function setConfig(MainConfig $param)
+    {
+        $this->config = $param;
+    }
+
+    public function getConfig():UserEditable
+    {
+        return $this->config;
     }
 }

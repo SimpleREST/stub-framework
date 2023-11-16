@@ -62,7 +62,7 @@ class Input implements \Stub\Framework\Contracts\Console\Input
     }
 
     /**
-     * Ирпизнак присутствия как минимум одной опции
+     * Признак присутствия как минимум одной опции
      * @return bool
      */
     public function hasOptions(): bool

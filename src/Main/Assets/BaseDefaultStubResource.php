@@ -60,7 +60,7 @@ abstract class BaseDefaultStubResource implements ContainingResources
      * ----
      * Значение строки содержащее ключевые слова отражающие содержание страницы, в виде строки в которой
      * ключевые слова или фразы перечислены через запятую.
-     * ####<i>!!!Может учитываться поисковыми системами при определении соответствия страницы поисковым запросам!!!</i>
+     * ####<i>!!! Может учитываться поисковыми системами при определении соответствия страницы поисковым запросам!!!</i>
      * @var string
      */
     public static $domain = "SimpleStub";
@@ -190,5 +190,5 @@ abstract class BaseDefaultStubResource implements ContainingResources
      * Код языка по ISO 639-1 (двухбуквенный) содержимого страницы
      * @var string
      */
-    public static $lang = "en";
+    public static $lang = "";
 }

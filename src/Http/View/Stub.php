@@ -12,6 +12,7 @@ use Stub\Framework\Main\Assets\BaseDefaultStubResource;
 class Stub implements View
 {
 
+    private $app;
     private $docType;
     private $head;
     private $body;
@@ -29,21 +30,23 @@ class Stub implements View
     public function __construct(Application $app, BaseDefaultStubResource $r)
     {
         $this->stringResources = $r;
-        $this->generate($app);
+        $this->app = $app;
+        $this->generate();
     }
 
     /**
      * Выполняется генерация наполнения основных блоков HTML документа заглушки
-     * @param Application $app
      * @return void
      */
-    private function generate(Application $app)
+    private function generate()
     {
         /**
          * Технический комментарий
-         * @var \Stub\Framework\Main\Assets\BaseDefaultStubResource $r
+         * @var BaseDefaultStubResource $r
          */
+        $app = $this->app;
         $r = $this->stringResources;
+        $c = $app->getConfig();
         $this->docType = "<!DOCTYPE html>";
         $this->head = /** @lang text */
             "
@@ -57,15 +60,21 @@ class Stub implements View
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i">
                 
                     <!-- Favicons -->
-                    <link href="img/favicon.png" rel="icon">
-                    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+                    <link href="/img/favicon.png" rel="icon">
+                    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
                 
                     <!-- Vendor CSS Files -->
-                    <link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-                    <link href="vendor/simplerest/icofont/icofont.min.css" rel="stylesheet">
+                    <link href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+                    <link href="/vendor/simplerest/icofont/icofont.min.css" rel="stylesheet">
+                    
+                    <!-- Flag-icons-->
+                    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css"
+/>
                 
                     <!-- Template Main CSS File -->
-                    <link href="css/main.css" rel="stylesheet">
+                    <link href="/css/main.css" rel="stylesheet">
                 ';
 
         $this->body = /** @lang text */
@@ -78,10 +87,13 @@ class Stub implements View
                                     <a href="index.php">
                                         <span>' . $r::$domain . ' </span>
                                     </a>
-                                </h1>
+                                </h1>                                
                             </div>
+                            
                             <div class="contact-link float-right">
-                                <a href="#contacts" class="scrollto">' . $r::$contacts_link_text . '</a>
+                            ' . (($c::IsLanguageSelectorDisabled()) ? "" : $this->putLanguageSelector($r::$lang, $c::getLanguageSet())) . '
+                                                                               
+                                <a href="#contacts" class="scrollto"><span class="fi fi-' . $r::$lang . '"></span> ' . $r::$contacts_link_text . '</a>
                             </div>
                         </div>
                     </header>
@@ -90,7 +102,7 @@ class Stub implements View
                     <div class="container-fluid" style="padding-right: 0; padding-left: 0;">
                     <!-- ======= Base Stub Section ======= -->
                     <section id="stub"
-                             style="background-image: url(\'img/' . $r::$base_background . '\')">
+                             style="background-image: url(\'/img/' . $r::$base_background . '\')">
                         <div class="stub-container">
                             <BR><BR>
                             <h1>' . $r::$base_title . "</h1>
@@ -164,7 +176,7 @@ class Stub implements View
                     </footer><!-- End #footer -->
                 ';
         $this->endHtmlScripts = /** @lang text */
-            '<script src="js/main.js"></script>';
+            '<script src="/js/main.js"></script>';
     }
 
     /**
@@ -180,5 +192,27 @@ class Stub implements View
             $this->head,
             $this->body,
             $this->endHtmlScripts);
+    }
+
+    private function putLanguageSelector(string $languageCode, array $c = array()): string
+    {
+        $tpl = "";
+        if (empty($c)) {
+            $tpl .= '';
+        } elseif (count($c) == 1) {
+            $tpl .= strtoupper(key($c));
+        } else {
+            $tpl .= '<a><select onchange="window.location.href = this.options[this.selectedIndex].value">';
+            foreach ($c as $key => $item) {
+                $tpl .= '<option value="/' . strtolower($key) . '"';
+                if (strtolower($key) == strtolower($languageCode)) {
+                    $tpl .= 'selected="selected"';
+                }
+                $tpl .= '>' . $item . '</option>';
+            }
+            $tpl .= ' </select></a>';
+        }
+
+        return $tpl;
     }
 }
