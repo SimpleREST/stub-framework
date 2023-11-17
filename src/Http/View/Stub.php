@@ -68,10 +68,7 @@ class Stub implements View
                     <link href="/vendor/simplerest/icofont/icofont.min.css" rel="stylesheet">
                     
                     <!-- Flag-icons-->
-                    <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css"
-/>
+                    <link  rel="stylesheet"  href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.14.0/css/flag-icons.min.css"/>
                 
                     <!-- Template Main CSS File -->
                     <link href="/css/main.css" rel="stylesheet">
@@ -91,8 +88,7 @@ class Stub implements View
                             </div>
                             
                             <div class="contact-link float-right">
-                            ' . (($c::IsLanguageSelectorDisabled()) ? "" : $this->putLanguageSelector($r::$lang, $c::getLanguageSet())) . '
-                                                                               
+                            ' . (($c::isLanguageSelectorEnabled()) ? $this->putLanguageSelector($r::$lang, $c::getLanguageSet()) : "") . '
                                 <a href="#contacts" class="scrollto"><span class="fi fi-' . $r::$lang . '"></span> ' . $r::$contacts_link_text . '</a>
                             </div>
                         </div>

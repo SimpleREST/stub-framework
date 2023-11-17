@@ -2,13 +2,13 @@
 
 namespace Stub\Framework\Main;
 
-use Stub\Framework\Contracts\Main\UserEditable;
+use Stub\Framework\Contracts\Config\ReadableConfiguration;
 
-abstract class MainConfig implements UserEditable
+abstract class MainConfig implements ReadableConfiguration
 {
     /**
      * @var array[]
-     * Набор локализационных ресурсов и указание наименований языковых реализаций для выбора.
+     * Набор локализационных ресурсов (строк) и указание наименований языковых реализаций для выбора.
      * Формат: 'Ru' => 'RU' Ключ массива директория языкового набора,
      * текстовое значение массива - представление языка страницы в поле выбора значения
      * Порядок, в котором представлены элементы массива, определяет последовательность,
@@ -19,9 +19,9 @@ abstract class MainConfig implements UserEditable
      */
     private static $languageSet = array();
     private static $defaultLanguage = "";
-    private static $automaticDetectionBrowserLanguage = true;
-    private static $languageSelectorDisabled = false;
-    private static $resourceLocaleDisabled = false;
+    private static $isADBLanguageEnabled = true;
+    private static $isLanguageSelectorEnabled = false;
+    private static $isResourceLocaleEnabled = false;
 
     /**
      * Устанавливает порядок и вид представления локализации ресурса (Наименование языка в поле выбора)
@@ -60,7 +60,7 @@ abstract class MainConfig implements UserEditable
      */
     protected static function automaticDetectionBrowserLanguageON()
     {
-        self::$automaticDetectionBrowserLanguage = true;
+        self::$isADBLanguageEnabled = true;
     }
 
     /**
@@ -72,32 +72,32 @@ abstract class MainConfig implements UserEditable
      */
     protected static function automaticDetectionBrowserLanguageOFF()
     {
-        self::$automaticDetectionBrowserLanguage = false;
+        self::$isADBLanguageEnabled = false;
     }
 
     protected static function languageSelectorOn()
     {
-        self::$languageSelectorDisabled = false;
+        self::$isLanguageSelectorEnabled = false;
     }
 
     protected static function languageSelectorOFF()
     {
-        self::$languageSelectorDisabled = true;
+        self::$isLanguageSelectorEnabled = true;
     }
 
     protected static function resourceLocaleDisabledOn()
     {
-        self::$resourceLocaleDisabled= false;
+        self::$isResourceLocaleEnabled = false;
     }
 
     protected static function resourceLocaleDisabledOFF()
     {
-        self::$resourceLocaleDisabled = true;
+        self::$isResourceLocaleEnabled = true;
     }
 
-    public static function IsAutomaticDetectionBrowserLanguageEnabled(): bool
+    public static function isAutomaticDetectionBrowserLanguageEnabled(): bool
     {
-        return self::$automaticDetectionBrowserLanguage;
+        return self::$isADBLanguageEnabled;
     }
 
     public static function getLanguageSet(): array
@@ -110,14 +110,13 @@ abstract class MainConfig implements UserEditable
         return self::$defaultLanguage;
     }
 
-
-    public static function IsLanguageSelectorDisabled(): bool
+    public static function isLanguageSelectorEnabled(): bool
     {
-        return self::$languageSelectorDisabled;
+        return self::$isLanguageSelectorEnabled;
     }
 
-    public static function IsResourceLocaleDisabled(): bool
+    public static function isResourceLocaleEnabled(): bool
     {
-        return self::$resourceLocaleDisabled;
+        return self::$isResourceLocaleEnabled;
     }
 }

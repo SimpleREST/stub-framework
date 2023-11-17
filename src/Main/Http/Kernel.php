@@ -3,8 +3,8 @@
 namespace Stub\Framework\Main\Http;
 
 use DateTime;
+use Stub\Framework\Contracts\Config\ReadableConfiguration;
 use Stub\Framework\Contracts\Main\Application;
-use Stub\Framework\Contracts\Main\UserEditable;
 use Stub\Framework\Http\View\Stub;
 use Stub\Framework\Main\Assets\BaseDefaultStubResource;
 use Stub\Framework\Main\MainConfig;
@@ -19,8 +19,6 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
      * @var Application
      */
     protected $app;
-
-    private $config;
 
     /**
      * Дата и время старта обрабатываемого запроса
@@ -83,11 +81,10 @@ class Kernel implements \Stub\Framework\Contracts\Http\Kernel
 
     public function setConfig(MainConfig $param)
     {
-        $this->config = $param;
         $this->app->setConfig($param);
     }
 
-    public function getConfig(): UserEditable
+    public function getConfig(): ReadableConfiguration
     {
         return $this->app->getConfig();
     }
