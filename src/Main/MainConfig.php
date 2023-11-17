@@ -85,14 +85,14 @@ abstract class MainConfig implements ReadableConfiguration
         self::$isLanguageSelectorEnabled = true;
     }
 
-    protected static function resourceLocaleDisabledOn()
-    {
-        self::$isResourceLocaleEnabled = false;
-    }
-
-    protected static function resourceLocaleDisabledOFF()
+    protected static function resourceLocaleEnable()
     {
         self::$isResourceLocaleEnabled = true;
+    }
+
+    protected static function resourceLocaleDisable()
+    {
+        self::$isResourceLocaleEnabled = false;
     }
 
     public static function isAutomaticDetectionBrowserLanguageEnabled(): bool
