@@ -2,6 +2,7 @@
 
 namespace Stub\Framework\Contracts\Main;
 
+use Stub\Framework\Contracts\Config\ReadableConfiguration;
 use Stub\Framework\Main\MainConfig;
 
 /**
@@ -25,7 +26,7 @@ interface Application
     public function basePath(string $path = ''): string;
 
     /**
-     * Пpинимает настройки конфигурации текущего выполнения
+     * Принимает настройки конфигурации текущего выполнения
      *
      * @param MainConfig $param
      * @return void
@@ -36,14 +37,14 @@ interface Application
      * Возвращает настройки конфигурации текущего выполнения
      * с использованием общего интерфейса редактирования конфигурации
      *
-     * @return UserEditable
+     * @return ReadableConfiguration
      */
-    public function getConfig(): UserEditable;
+    public function getConfig(): ReadableConfiguration;
 
     /**
      * Возвращает установленную локаль.
      *
-     * @return string
+     * @return false | string
      */
     public function getLocale();
 

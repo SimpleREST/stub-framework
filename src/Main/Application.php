@@ -2,8 +2,8 @@
 
 namespace Stub\Framework\Main;
 
+use Stub\Framework\Contracts\Config\ReadableConfiguration;
 use Stub\Framework\Contracts\Main\Application as BaseApplicationContract;
-use Stub\Framework\Contracts\Main\UserEditable;
 
 /**
  * Основной класс приложения (единый для консоли, http  rest APi
@@ -16,7 +16,7 @@ class Application implements BaseApplicationContract
      *
      * @var string
      */
-    const VERSION = '0.1.3';
+    const VERSION = '0.1.4';
 
     /**
      * The base path for the SimpleStub installation.
@@ -35,7 +35,7 @@ class Application implements BaseApplicationContract
     /**
      * The application configuration object.
      *
-     * @var string
+     * @var MainConfig
      */
     private $config;
 
@@ -91,7 +91,7 @@ class Application implements BaseApplicationContract
         $this->config = $param;
     }
 
-    public function getConfig():UserEditable
+    public function getConfig(): ReadableConfiguration
     {
         return $this->config;
     }
